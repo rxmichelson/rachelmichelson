@@ -781,7 +781,7 @@
     buildFilterContent(dropItems, pillId);
     // Sort is a choice, not a set of filters, so its footer reads Reset / Done
     dropClear.textContent = pillId === 'sort' ? 'Reset' : 'Clear';
-    dropDone.textContent  = pillId === 'sort' ? 'Done'  : 'Apply';
+    dropDone.textContent  = 'See Results';
     syncClearBtn(pillId);
   }
 
@@ -1043,9 +1043,9 @@
   // choice, so there is no set to clear — and every other list sheet
   // (2144:20712) says Clear All / Done.
   function sheetLabels(pillId) {
-    if (isAttrGridPill(pillId))                    return { clear: 'Clear',     cta: 'Apply' };
-    if (pillId === 'sort' || pillId === 'category') return { clear: 'Reset',     cta: 'Done'  };
-    return { clear: 'Clear All', cta: 'Done' };
+    if (isAttrGridPill(pillId))                     return { clear: 'Clear',     cta: 'See Results' };
+    if (pillId === 'sort' || pillId === 'category') return { clear: 'Reset',     cta: 'See Results' };
+    return { clear: 'Clear All', cta: 'See Results' };
   }
 
   // Colour and every size family draw their values as a pill grid rather than
@@ -1886,7 +1886,7 @@
     const mobile = isMobile();
     document.getElementById('afTitle').textContent   = mobile ? 'All filters' : 'All Filters';
     document.getElementById('afClearAllBtn').textContent = mobile ? 'Clear All' : 'Reset';
-    document.getElementById('afDoneBtn').textContent = mobile ? 'See Results' : 'Done';
+    document.getElementById('afDoneBtn').textContent = 'See Results';
   }
 
   function openAllFilters() {

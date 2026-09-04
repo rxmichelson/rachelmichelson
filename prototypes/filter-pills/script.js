@@ -737,7 +737,7 @@
     buildFilterContent(dropItems, pillId);
     // Sort is a choice, not a set of filters, so its footer reads Reset / Done
     dropClear.textContent = pillId === 'sort' ? 'Reset' : 'Clear';
-    dropDone.textContent  = pillId === 'sort' ? 'Done'  : 'Apply';
+    dropDone.textContent  = 'See Results';
     syncClearBtn(pillId);
   }
 
