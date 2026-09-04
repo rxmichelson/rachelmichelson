@@ -1,0 +1,760 @@
+/* ==========================================================================
+   AI Q&A — PDP Questions Section
+   Faithful CSS compile of the ExpertVoice sources:
+     store-web        src/main/ui/product/components/questions/QuestionsSection.less
+     exp-react-components  packages/styles/less/{variables,elements,components,styles}
+     exp-react-components  packages/components/src/skeletons/SkeletonBlock.less
+     exp-react-components  packages/components/src/common/Markdown.less
+   LESS variables are resolved to their literal values below.
+   ========================================================================== */
+
+:root {
+  /* Palette — packages/styles/less/variables/variables.less */
+  --color-trailblaze-800: #D5410B;
+  --color-trailblaze-700: #EE5720;
+  --color-trailblaze-600: #FC693B;
+  --color-trailblaze-400: #FFC3AD;
+  --color-navy-900: #173B77;
+  --color-navy-700: #0E5DBD;
+  --color-navy-400: #BAE4FD;
+  --color-navy-200: #E0F1FE;
+  --color-gray-900: #252525;
+  --color-gray-800: #4D4D4D;
+  --color-gray-700: #757575;
+  --color-gray-600: #9D9D9D;
+  --color-gray-500: #C5C5C5;
+  --color-gray-400: #E3E3E3;
+  --color-gray-300: #F2F2F2;
+  --color-gray-200: #F7F7F7;
+  --color-white: #FFF;
+  --color-info: #3C98C7;
+  --color-info-dark: #3485AE;
+  --color-danger: #D73930;
+
+  /* Semantic aliases */
+  --color-brand-primary: var(--color-trailblaze-600);
+  --color-marketing-navy-normal: var(--color-navy-700);
+  --color-marketing-navy-light: var(--color-navy-400);
+  --color-marketing-navy-lighter: var(--color-navy-200);
+  --color-lightGray-1: var(--color-gray-400);
+  --color-lightGray-2: var(--color-gray-300);
+  --color-lightGray-3: var(--color-gray-200);
+  --color-mediumGray-1: var(--color-gray-700);
+  --color-mediumGray-2: var(--color-gray-600);
+  --color-mediumGray-3: var(--color-gray-500);
+  --color-text-default: var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-700);
+  --color-text-disabled: var(--color-gray-500);
+
+  /* Radii */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --base-border-radius: var(--border-radius-sm);
+
+  /* Type */
+  --font-primary-font-family: 'Source Sans Pro', sans-serif;
+  --font-size: 15px;
+  --font-line-height: 21px;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --type-small-text-size: 13px;
+  --type-small-text-line-height: 18px;
+  --type-title-xs-size: 18px;
+  --type-title-xs-line-height: 24px;
+  --type-title-md-size: 24px;
+  --type-title-md-line-height: 30px;
+
+  /* Focus */
+  --focus-outline-width: 2px;
+  --focus-outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Fonts
+   ========================================================================== */
+
+/* Source Sans Pro — the app loads these from /sign-on/fonts; vendored here. */
+@font-face {
+  font-display: swap;
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 300;
+  src: url('assets/fonts/ssp-300.woff2') format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: url('assets/fonts/ssp-400.woff2') format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 600;
+  src: url('assets/fonts/ssp-600.woff2') format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 700;
+  src: url('assets/fonts/ssp-700.woff2') format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  font-weight: 400;
+  src: url('assets/fonts/ssp-400i.woff2') format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  font-weight: 600;
+  src: url('assets/fonts/ssp-600i.woff2') format('woff2');
+}
+
+/* Experticity UX icon font — copied verbatim from
+   exp-react-components/packages/styles/less/utilities/fonts/experticity-ux/ */
+@font-face {
+  font-family: 'Experticity UX';
+  font-style: normal;
+  font-weight: normal;
+  src:
+    url('assets/fonts/experticity-ux.woff') format('woff'),
+    url('assets/fonts/experticity-ux.ttf') format('truetype');
+}
+
+/* ==========================================================================
+   Icons — utilities/experticity-ux-icons.less
+   ========================================================================== */
+
+.exp-ux-mini,
+.exp-ux-small,
+.exp-ux-medium,
+.exp-ux-large,
+.exp-ux-xlarge {
+  font-family: 'Experticity UX';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  speak: none;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.exp-ux-mini { font-size: 14px; }
+.exp-ux-small,
+.exp-ux-medium { font-size: 18px; }
+.exp-ux-large { font-size: 28px; }
+.exp-ux-xlarge { font-size: 48px; }
+
+.exp-ux-arrow-right.exp-ux-large::before,
+.exp-ux-arrow-right.exp-ux-small::before,
+.exp-ux-arrow-right.exp-ux-mini::before { content: "\e905"; }
+
+.exp-ux-boltSparkle.exp-ux-large::before { content: "\e9cd"; }
+
+.exp-ux-thumbsDown.exp-ux-large::before,
+.exp-ux-thumbsDown.exp-ux-mini::before { content: "\e655"; }
+.exp-ux-thumbsDown.exp-ux-small::before { content: "\e62d"; }
+.exp-ux-thumbsDownFilled.exp-ux-small::before { content: "\e987"; }
+
+.exp-ux-thumbsUp.exp-ux-large::before,
+.exp-ux-thumbsUp.exp-ux-mini::before { content: "\e656"; }
+.exp-ux-thumbsUp.exp-ux-small::before { content: "\e62e"; }
+.exp-ux-thumbsUpFilled.exp-ux-small::before { content: "\e988"; }
+
+/* ==========================================================================
+   Normalize essentials + base — utilities/normalize.less, styles/base.less
+   ========================================================================== */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  background: transparent;
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  /* Keep the prototype canvas transparent so only the Q&A component is visible. */
+  background: transparent;
+  color: var(--color-text-default);
+  font-family: var(--font-primary-font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight-normal);
+  letter-spacing: 0;
+  line-height: var(--font-line-height);
+  margin: 0;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+/* styles/focus.less */
+*:focus-visible {
+  border-radius: 2px; /* @base-border-radius - @focus-outline-offset */
+  outline: var(--focus-outline-width) solid var(--color-marketing-navy-normal);
+  outline-offset: var(--focus-outline-offset);
+}
+*:focus-visible:active,
+*:focus-visible:hover {
+  outline: var(--focus-outline-width) solid var(--color-marketing-navy-normal);
+  outline-offset: var(--focus-outline-offset);
+}
+
+/* ==========================================================================
+   Typography — elements/typography.less
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6,
+p,
+li {
+  color: var(--color-text-default);
+  font-family: var(--font-primary-font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--font-line-height);
+  margin: 0 0 1em 0;
+  padding: 0;
+}
+
+a {
+  border-bottom: 1px dotted var(--color-text-default);
+  color: inherit;
+  font-weight: var(--font-weight-normal);
+  text-decoration: none;
+}
+
+small { font-size: var(--type-small-text-size); }
+
+strong { font-weight: var(--font-weight-bold); }
+
+ul,
+ol {
+  list-style-position: initial;
+  margin: 0 0 1em 0;
+  padding-left: 20px;
+}
+
+ul li,
+ol li {
+  line-height: 1.2em;
+  margin: 0 0 0.5em 0;
+}
+
+/* ==========================================================================
+   SkeletonBlock — packages/components/src/skeletons/SkeletonBlock.less
+   ========================================================================== */
+
+@keyframes skeleton-shimmer {
+  from { background-position: -400px 0; }
+  to   { background-position: 400px 0; }
+}
+
+.skeleton-block {
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  background: linear-gradient(
+    90deg,
+    var(--color-lightGray-1) 25%,
+    var(--color-lightGray-2) 50%,
+    var(--color-lightGray-1) 75%
+  );
+  background-size: 800px 100%;
+  border-radius: var(--skeleton-border-radius, var(--border-radius-sm));
+  display: block;
+  height: var(--skeleton-height, var(--font-line-height));
+  width: var(--skeleton-width, 100%);
+}
+
+/* ==========================================================================
+   Pills — components/pills.less
+   ========================================================================== */
+
+.pill {
+  background: var(--color-gray-900);
+  border-radius: var(--base-border-radius);
+  color: var(--color-white);
+  font-size: var(--font-size);
+  line-height: var(--font-line-height);
+  padding: 1px 14px;
+}
+
+.pill-small {
+  font-size: var(--type-small-text-size);
+  line-height: var(--type-small-text-line-height);
+  padding: 1px 8px;
+}
+
+/* ==========================================================================
+   Buttons — elements/buttons.less
+   ========================================================================== */
+
+.btn-primary,
+.btn-invisible {
+  border-radius: calc(infinity * 1px);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-family: var(--font-primary-font-family);
+  font-weight: var(--font-weight-normal);
+  margin: 3px;
+  min-width: 3px;
+  outline: none;
+  padding: 0 20px;
+  text-align: center;
+  transition: transform 100ms ease-out;
+  vertical-align: baseline;
+  white-space: nowrap;
+  /* .btn-regular() defaults, overridden by .btn-small below */
+  --button-inner-height: 42px;
+  font-size: 15px;
+  line-height: 42px;
+}
+
+.btn-primary i,
+.btn-invisible i { margin-right: 10px; }
+
+.btn-primary {
+  background-color: var(--color-trailblaze-700);
+  border: solid 1px var(--color-trailblaze-700);
+  color: var(--color-white);
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:focus-visible {
+  background-color: var(--color-trailblaze-800);
+  border-color: var(--color-trailblaze-800);
+  color: var(--color-white);
+}
+.btn-primary:active {
+  background-color: var(--color-trailblaze-800);
+  border-color: var(--color-trailblaze-800);
+  color: var(--color-white);
+}
+.btn-primary:disabled,
+.btn-primary:disabled:hover {
+  background-color: var(--color-trailblaze-400);
+  border-color: var(--color-trailblaze-400);
+  color: var(--color-white);
+}
+/* .shrink-btn-on-press(calc(var(--button-inner-height) + 2px)) */
+.btn-primary:active:not(:disabled) {
+  transform: scale(calc((var(--button-inner-height) + 2px - 2px) / (var(--button-inner-height) + 2px)));
+}
+
+.btn-invisible {
+  align-items: center;
+  background-color: transparent;
+  border: solid 1px transparent;
+  border-radius: 44px;
+  color: var(--color-text-secondary);
+  display: inline-flex;
+  gap: 6px;
+  justify-content: center;
+  margin: 0;
+  padding: 0 12px;
+}
+.btn-invisible:hover,
+.btn-invisible:focus,
+.btn-invisible:focus-visible {
+  background-color: var(--color-gray-200);
+  border-color: var(--color-gray-200);
+  color: var(--color-gray-800);
+}
+.btn-invisible:active {
+  background-color: var(--color-gray-200);
+  border-color: var(--color-gray-200);
+  color: var(--color-gray-900);
+}
+.btn-invisible:disabled,
+.btn-invisible:disabled:hover {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--color-text-disabled);
+}
+.btn-invisible i {
+  line-height: inherit;
+  margin: 0;
+}
+
+/* Sizes — declared after the variants in buttons.less, so they win */
+.btn-small {
+  --button-inner-height: 30px;
+  font-size: 12px;
+  line-height: 30px;
+}
+
+/* ==========================================================================
+   Form fields — elements/forms.less + components/validated-form.less
+   ========================================================================== */
+
+.validated-input-field { position: relative; }
+
+.input-field {
+  background-color: var(--color-white);
+  border: solid 1px var(--color-mediumGray-3);
+  border-radius: var(--base-border-radius);
+  box-sizing: border-box;
+  color: var(--color-text-secondary); /* @form-field-color */
+  display: block;
+  font-family: var(--font-primary-font-family);
+  font-size: 16px;
+  font-weight: var(--font-weight-normal);
+  height: 42px;
+  line-height: var(--font-line-height);
+  margin: 0 0 12px 0;
+  padding: 5px 5px 5px 9px;
+  width: 100%;
+}
+
+.input-field::placeholder {
+  color: var(--color-text-disabled);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Markdown — packages/components/src/common/Markdown.less
+   ========================================================================== */
+
+.markdown-wrapper a {
+  border: none;
+  color: var(--color-info);
+}
+.markdown-wrapper a:hover,
+.markdown-wrapper a:active { color: var(--color-info-dark); }
+
+/* ==========================================================================
+   QuestionsSection — store-web .../questions/QuestionsSection.less
+   ========================================================================== */
+
+.questions-section {
+  --question-section-gutter: 12px;
+  --question-response-gutter: 8px;
+  /* (37px chip height - 2px) / 37px — same ratio ECS .shrink-btn() uses */
+  --suggestion-press-scale: 0.946;
+  --ask-enter-duration: 220ms;
+  --ask-enter-easing: cubic-bezier(0.2, 0, 0.2, 1);
+
+  background-color: var(--color-lightGray-3);
+  border-radius: var(--border-radius-lg);
+  display: flex;
+  flex-flow: column;
+  gap: 8px;
+  padding: var(--question-section-padding, 8px var(--question-section-gutter) 12px);
+}
+
+@media (min-width: 599px) {
+  .questions-section {
+    --question-section-gutter: 18px;
+    --question-section-padding: 18px;
+  }
+}
+
+.questions-section .questions-header {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.questions-section .questions-header .beta-pill {
+  background-color: var(--color-marketing-navy-lighter);
+  color: var(--color-marketing-navy-normal);
+  font-weight: var(--font-weight-semibold);
+  padding: 1px 3px;
+}
+
+.questions-section .question-header-icon {
+  align-self: end;
+  color: var(--color-brand-primary);
+  height: var(--icon-size, 30px);
+  width: var(--icon-size, 30px);
+}
+
+/* .type-xs-desktop() */
+.questions-section .questions-heading {
+  font-family: var(--font-primary-font-family);
+  font-size: var(--type-title-xs-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--type-title-xs-line-height);
+  margin: 0;
+}
+
+/* .type-md-desktop() */
+@media (min-width: 599px) {
+  .questions-section .questions-heading {
+    font-size: var(--type-title-md-size);
+    line-height: var(--type-title-md-line-height);
+  }
+}
+
+.questions-section .question-asked-question {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-mediumGray-3);
+  border-radius: 21px; /* @border-radius-rounded */
+  display: inline-block;
+  font-weight: var(--font-weight-normal); /* deviation: LESS ships @font-weight-semibold */
+  padding: 8px 12px;
+}
+
+.questions-section .question-loading {
+  --skeleton-height: 8px;
+  --skeleton-width: 60%;
+  margin-left: var(--question-response-gutter);
+}
+
+.questions-section .question-loading .skeleton-block { margin: 12px 0; }
+
+.questions-section .question-loading .skeleton-block:first-child,
+.questions-section .question-loading .skeleton-block:last-child {
+  --skeleton-width: 80%;
+}
+
+.questions-section .question-error {
+  color: var(--color-danger);
+  font-weight: var(--font-weight-semibold);
+  margin: 0 0 10px var(--question-response-gutter);
+}
+
+.questions-section .question-conversation {
+  display: flex;
+  flex-flow: column;
+  gap: 4px;
+  margin: 10px 0 0 var(--question-response-gutter);
+}
+
+.questions-section .question-response-disclaimer {
+  color: var(--color-text-secondary);
+  font-size: var(--type-small-text-size);
+  font-style: italic;
+  line-height: var(--type-small-text-line-height);
+  margin: 0 0 6px;
+}
+
+.questions-section .question-response > p:last-child,
+.questions-section .question-response > ul:last-child { margin-bottom: 0; }
+
+.questions-section .question-feedback {
+  align-items: center;
+  display: flex;
+  gap: 4px;
+  min-height: 44px;
+}
+
+.questions-section .question-feedback .question-feedback-label {
+  color: var(--color-text-secondary);
+}
+
+.questions-section .question-feedback[data-accepted="false"] .question-feedback-label {
+  margin-top: -3px; /* Try and center with the wonky icon */
+}
+
+.questions-section .question-feedback[data-accepted="true"] .question-feedback-label {
+  margin-top: 3px; /* Try and center with the wonky icon */
+}
+
+.questions-section .question-feedback .question-feedback-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+@media (min-width: 599px) {
+  .questions-section .question-feedback .question-feedback-buttons { gap: 4px; }
+}
+
+.questions-section .question-feedback .btn-feedback { padding: 0 6px; }
+
+.questions-section .question-feedback .btn-feedback:active,
+.questions-section .question-feedback .btn-feedback:focus,
+.questions-section .question-feedback .btn-feedback:hover {
+  /* Darken the hover state to stand off the darker panel background */
+  background-color: var(--color-lightGray-2);
+  border-color: var(--color-lightGray-2);
+}
+
+.questions-section .question-feedback[data-answered="true"] { padding-left: 7px; }
+.questions-section .question-feedback[data-answered="true"] > i { color: var(--color-text-secondary); }
+
+.questions-section .question-form { position: relative; }
+
+.questions-section .question-form .form-field .input-field {
+  border-color: var(--color-mediumGray-2);
+  border-radius: 21px; /* Override *:focus-visible */
+  /* deviation: forms.less ships @form-field-color (@color-text-secondary, #757575) */
+  color: var(--color-text-default);
+  margin: 0;
+  padding-left: 12px;
+  padding-right: 42px;
+}
+
+.questions-section .question-form .form-field .input-field:focus {
+  border-color: var(--color-info);
+  outline: none;
+}
+
+.questions-section .question-form .btn-question-submit {
+  margin: 0;
+  padding: 4px;
+  position: absolute;
+  right: 8px;
+  top: 7px;
+}
+
+.questions-section .question-form .btn-question-submit > i {
+  display: block;
+  margin: 0;
+}
+
+.questions-section .question-suggestions {
+  display: flex;
+  flex-flow: column;
+  gap: 4px;
+}
+
+@media (max-width: 598px) {
+  /* Horizontal scroll on mobile screens */
+  .questions-section .question-suggestions {
+    margin: 0 calc(var(--question-section-gutter) * -1);
+    overflow-x: auto;
+    padding: 0 var(--question-section-gutter);
+  }
+  .questions-section .question-suggestions .question-suggestions-row { flex-wrap: nowrap; }
+}
+
+.questions-section .question-suggestions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.questions-section .question-suggestions-row .question-suggestion {
+  background-color: var(--color-marketing-navy-lighter);
+  border: none;
+  border-radius: 21px;
+  color: var(--color-text-default);
+  flex: 0 0 auto;
+  font-weight: var(--font-weight-normal); /* deviation: LESS ships @font-weight-semibold */
+  margin: 0;
+  outline: none;
+  padding: 8px 12px;
+  transition:
+    background-color 100ms ease-out,
+    transform 100ms ease-out;
+}
+
+.questions-section .question-suggestions-row .question-suggestion:not(:disabled):hover {
+  background-color: var(--color-marketing-navy-light);
+}
+
+/* Press — mirrors ECS .shrink-btn(): scale((height - 2px) / height) on a 37px chip */
+.questions-section .question-suggestions-row .question-suggestion:not(:disabled):active {
+  background-color: var(--color-marketing-navy-light);
+  transform: scale(var(--suggestion-press-scale));
+}
+
+.questions-section .question-disclaimer {
+  color: var(--color-text-secondary);
+  font-style: italic;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Ask transition — the asked chip, the skeletons, and the answer each enter
+   once, only when they are genuinely new. The wrapper's height is tweened in
+   script.js so the form below never snaps to a new position.
+   -------------------------------------------------------------------------- */
+
+@keyframes question-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes question-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.questions-section .question-asked.is-entering {
+  animation: question-enter var(--ask-enter-duration) var(--ask-enter-easing) both;
+}
+
+.questions-section .question-loading.is-entering {
+  animation: question-fade-in var(--ask-enter-duration) var(--ask-enter-easing) 60ms both;
+}
+
+.questions-section .question-loading.is-entering .skeleton-block {
+  animation:
+    skeleton-shimmer 1.4s ease-in-out infinite,
+    question-enter var(--ask-enter-duration) var(--ask-enter-easing) both;
+}
+
+/* Stagger the skeleton rows so the block builds rather than appearing at once */
+.questions-section .question-loading.is-entering .skeleton-block:nth-child(1) { animation-delay: 0s, 60ms; }
+.questions-section .question-loading.is-entering .skeleton-block:nth-child(2) { animation-delay: 0s, 100ms; }
+.questions-section .question-loading.is-entering .skeleton-block:nth-child(3) { animation-delay: 0s, 140ms; }
+.questions-section .question-loading.is-entering .skeleton-block:nth-child(4) { animation-delay: 0s, 180ms; }
+.questions-section .question-loading.is-entering .skeleton-block:nth-child(5) { animation-delay: 0s, 220ms; }
+
+.questions-section .question-conversation.is-entering {
+  animation: question-enter 260ms var(--ask-enter-easing) both;
+}
+
+.questions-section .question-error.is-entering {
+  animation: question-enter var(--ask-enter-duration) var(--ask-enter-easing) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .questions-section .question-asked.is-entering,
+  .questions-section .question-loading.is-entering,
+  .questions-section .question-conversation.is-entering,
+  .questions-section .question-error.is-entering {
+    animation: none;
+  }
+
+  .questions-section .question-loading.is-entering .skeleton-block {
+    animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  }
+
+  .questions-section .question-suggestions-row .question-suggestion {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   Prototype-only chrome (not part of the component)
+   ========================================================================== */

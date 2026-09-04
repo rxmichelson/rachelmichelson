@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Q&amp;A — PDP Questions Section</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <div class="partition" id="questions">
+      <!--
+        Faithful recreation of store-web
+        src/main/ui/product/components/questions/QuestionsSection.tsx
+        Markup mirrors the React output, including the FormField wrapper
+        (.validated-input-field) that @exp/components/form/InputField renders.
+      -->
+      <div class="questions-section" id="questionsSection"
+           data-answered="false" data-error="false" data-interacted="false" data-loading="false">
+
+        <div class="questions-header">
+          <i class="question-header-icon exp-ux-boltSparkle exp-ux-large"></i>
+          <h2 class="questions-heading">Questions about this product?</h2>
+          <span class="pill pill-info pill-small beta-pill">beta</span>
+        </div>
+
+        <!-- .question-asked / .question-loading / .question-error / .question-conversation render here -->
+        <div id="questionsDynamic"></div>
+
+        <div class="question-suggestions" id="questionSuggestions" hidden></div>
+
+        <form class="question-form" name="productQuestionForm" id="questionForm">
+          <div class="validated-input-field form-field product-question">
+            <!-- autocomplete/1p/lp attributes are prototype-only: they suppress Chrome's
+                 saved form-history dropdown and password-manager badges during demos. -->
+            <input class="input-field no-label"
+                   autocapitalize="off"
+                   autocomplete="off"
+                   autocorrect="off"
+                   data-1p-ignore
+                   data-lpignore="true"
+                   id="productQuestion"
+                   name="productQuestion"
+                   placeholder="Ask anything about this product"
+                   spellcheck="false"
+                   type="text"
+                   value="">
+          </div>
+          <button class="btn-primary btn-small btn-question-submit" type="submit" aria-label="Submit">
+            <i class="exp-ux-small exp-ux-arrow-right"></i>
+          </button>
+        </form>
+
+        <p class="question-disclaimer" id="questionDisclaimer">
+          AI summary of product details &amp; expert insights. AI gets it wrong sometimes — that's what experts are for.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

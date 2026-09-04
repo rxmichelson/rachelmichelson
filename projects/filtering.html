@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Filtering case study by Rachel Michelson." />
+    <title>Filtering — Rachel Michelson</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="inspo">
+    <main>
+      <nav class="site-nav" aria-label="Main navigation">
+        <div class="site-nav-inner">
+          <a class="wordmark" href="../index.html">Rachel Michelson</a>
+          <div class="nav-links">
+            <a class="nav-tab active" href="../index.html#work">Work</a>
+            <a class="nav-tab" href="../resume.html">Resume</a>
+            <a class="nav-tab" href="#contact" data-contact-open>Contact Me</a>
+          </div>
+        </div>
+      </nav>
+      <div class="case-layout">
+      <article class="modal-sheet case-study filtering-study">
+        <a class="case-back" href="../index.html">← Back to work</a>
+        <header class="modal-header">
+          <h1>Filtering</h1>
+          <p>Ecommerce · Product discovery</p>
+        </header>
+        <section class="filtering-intro" id="overview" aria-label="Project overview and prototype">
+          <div class="filtering-summary">
+            <section class="filtering-summary-card filtering-summary-overview">
+              <p class="eyebrow">Overview</p>
+              <p>A clearer, more intuitive way for shoppers to narrow a catalog and find the products that fit their needs on <a href="https://www.expertvoice.com/" target="_blank" rel="noreferrer">ExpertVoice</a>.</p>
+            </section>
+            <section class="filtering-summary-card filtering-summary-impact">
+              <p class="eyebrow">Impact</p>
+              <p class="modal-impact">+0.74% tot. annual GMV<sup>*</sup><small>*Expected to increase as remaining work ships.</small></p>
+            </section>
+            <section class="filtering-summary-card filtering-summary-role">
+              <p class="eyebrow">Role</p>
+              <p>Lead UX designer</p>
+            </section>
+          </div>
+          <div class="filtering-intro-prototype filtering-prototype final-designs-prototype">
+            <div class="prototype-frame">
+              <iframe src="../prototypes/filter-pills-final/index.html" title="Interactive final filtering prototype"></iframe>
+            </div>
+            <div class="prototype-view-toggle" role="group" aria-label="Prototype viewport">
+              <button type="button" class="is-selected" data-prototype-view="desktop" aria-pressed="true">Desktop</button>
+              <button type="button" data-prototype-view="mobile" aria-pressed="false">Mobile</button>
+            </div>
+          </div>
+        </section>
+        <section class="plp-analysis" id="problem" aria-labelledby="plp-analysis-title">
+          <p class="eyebrow">Before</p>
+          <h2 id="plp-analysis-title">What’s wrong with the PLP here?</h2>
+          <figure class="plp-analysis-image">
+            <img src="../assets/filtering/Filters%20before.png" width="4320" height="4050" alt="The original product listing page" />
+            <img class="plp-annotations" src="../assets/filtering/Filters%20before%20annotated.png" width="4320" height="4050" alt="" aria-hidden="true" />
+            <button class="plp-annotation-toggle" type="button" aria-pressed="false">Show me</button>
+          </figure>
+        </section>
+        <section class="filtering-plan" id="approach" aria-label="Filtering design approach">
+          <article class="filtering-plan-card">
+            <p class="eyebrow">1. The quick wins</p>
+            <h2>Remove unnecessary UI</h2>
+          </article>
+          <article class="filtering-plan-card">
+            <p class="eyebrow">2. Make controls obvious</p>
+            <h2>Implement filter pills</h2>
+          </article>
+          <article class="filtering-plan-card">
+            <p class="eyebrow">3. Space optimization</p>
+            <h2>A/B test layout variants</h2>
+          </article>
+          <article class="filtering-plan-card">
+            <p class="eyebrow">4. Attribute filters</p>
+            <h2>Allow users to filter by size, color, etc.</h2>
+          </article>
+        </section>
+        <section class="filter-part filter-quick-wins" id="step-1" aria-labelledby="filter-part-one-title">
+          <p class="eyebrow">Step 1 — The quick wins</p>
+          <h2 id="filter-part-one-title">Remove unnecessary UI</h2>
+          <figure class="filter-removals-image">
+            <img src="../assets/filtering/filters-removals-v4.png" width="4320" height="2928" alt="Filtering interface before redundant elements are removed" />
+            <img class="filter-removals-after" src="../assets/filtering/smush-only.png" width="4320" height="2928" alt="" aria-hidden="true" />
+            <div class="filter-before-after-toggle" role="group" aria-label="Compare before and after">
+              <button type="button" class="is-selected" data-filter-view="before" aria-pressed="true">Before</button>
+              <button type="button" data-filter-view="after" aria-pressed="false">After</button>
+            </div>
+          </figure>
+        </section>
+        <section class="filter-part filter-pills-redesign" id="step-2" aria-labelledby="filter-part-two-title">
+          <p class="eyebrow">Step 2 — Implement filter pills</p>
+          <h2 id="filter-part-two-title">Replace filter panel with more space-efficient pills</h2>
+          <img class="filter-pill-states" src="../assets/filtering/part-2/pill-states.png" width="1332" height="372" alt="Default, hover, and selected filter pill states" />
+          <figure class="filter-pills-comparison">
+            <img src="../assets/filtering/smush-only.png" width="4320" height="2928" alt="Product listing before filter pills" />
+            <img class="filter-pills-after" src="../assets/filtering/filters-removals-after.png" width="5760" height="3904" alt="Product listing after filter pills were introduced" />
+            <div class="filter-pills-view-toggle" role="group" aria-label="Video comparison view">
+              <button type="button" class="is-selected" data-pills-view="before" aria-pressed="true">Before</button>
+              <button type="button" data-pills-view="after" aria-pressed="false">After</button>
+            </div>
+          </figure>
+        </section>
+        <section class="extra-space" id="step-3" aria-labelledby="extra-space-title">
+          <p class="eyebrow">Step 3 — Space optimization</p>
+          <h2 id="extra-space-title">A/B test layout variants</h2>
+          <div class="extra-space-comparison">
+            <figure>
+              <h3>Larger product cards</h3>
+              <img src="../assets/filtering/part-2/density/Larger%20images.png" width="1131" height="668" alt="Product listing using larger product cards" />
+              <figcaption>Winner! <strong>+2.12% Add to cart</strong></figcaption>
+            </figure>
+            <figure>
+              <h3>Extra column of products</h3>
+              <img src="../assets/filtering/part-2/density/Extra%20product%20column.png" width="1128" height="568" alt="Product listing with an extra product column" />
+            </figure>
+          </div>
+        </section>
+        <section class="attribute-filters" id="step-4" aria-labelledby="attribute-filters-title">
+          <p class="eyebrow">Step 4 — Attribute filters</p>
+          <h2 id="attribute-filters-title">Allow users to filter by size, color, etc.</h2>
+          <div class="attribute-filters-media">
+            <video width="448" height="400" autoplay muted loop playsinline preload="metadata" aria-label="Filtering products by color">
+              <source src="../assets/filtering/color.mp4" type="video/mp4" />
+            </video>
+            <video width="390" height="456" autoplay muted loop playsinline preload="metadata" aria-label="Filtering products by size">
+              <source src="../assets/filtering/size.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </section>
+        <section class="final-designs" id="final-designs" aria-labelledby="final-designs-title">
+          <h2 id="final-designs-title">Final designs &amp; impact</h2>
+          <p class="final-designs-instruction">Try it yourself! Filter these products to your size and colors.</p>
+          <div class="filtering-prototype final-designs-prototype">
+            <div class="prototype-frame">
+              <iframe src="../prototypes/filter-pills-final/index.html" title="Interactive final filtering prototype"></iframe>
+            </div>
+            <div class="prototype-view-toggle" role="group" aria-label="Final prototype viewport">
+              <button type="button" class="is-selected" data-prototype-view="desktop" aria-pressed="true">Desktop</button>
+              <button type="button" data-prototype-view="mobile" aria-pressed="false">Mobile</button>
+            </div>
+          </div>
+          <h3>Fold comparison</h3>
+          <img src="../assets/filtering/fold-comparison-v2.png" width="8655" height="4050" alt="Fold comparison of the final filtering designs" />
+          <section class="final-impact" aria-labelledby="final-impact-title">
+            <h2 id="final-impact-title">Impact</h2>
+            <div class="final-impact-metrics">
+              <article class="final-impact-metric">
+                <strong>+0.78%</strong>
+                <span>PDP conversion rate</span>
+              </article>
+              <article class="final-impact-metric">
+                <strong>+4.18%</strong>
+                <span>Product card clicks from search</span>
+              </article>
+              <article class="final-impact-metric">
+                <strong>+3.24%</strong>
+                <span>Add to cart*<small>*on products sold directly through ExpertVoice</small></span>
+              </article>
+            </div>
+            <p class="final-impact-total">This sustained conversion is worth roughly <span>$2–4M</span> in annual GMV.</p>
+          </section>
+        </section>
+      </article>
+      </div>
+      <!-- Temporarily hidden portfolio mascot.
+      <aside class="portfolio-companion" aria-live="polite" aria-hidden="true">
+        <img src="../assets/portfolio-mascot-final.png" width="1536" height="1024" alt="" draggable="false" title="Drag me" />
+        <div class="portfolio-companion-message">
+          <p>Hi! This is a test message ✦</p>
+        </div>
+      </aside>
+      -->
+    </main>
+    <footer><p>© 2026 Rachel Michelson</p></footer>
+    <script src="../script.js"></script>
+    <script>
+      const annotationButton = document.querySelector('.plp-annotation-toggle');
+      const annotationImage = document.querySelector('.plp-analysis-image');
+      annotationButton?.addEventListener('click', () => {
+        const visible = annotationImage.classList.toggle('is-annotated');
+        annotationButton.setAttribute('aria-pressed', String(visible));
+        annotationButton.textContent = visible ? 'Hide notes' : 'Show me';
+      });
+      const removalImage = document.querySelector('.filter-removals-image');
+      let quickWinsMessageShown = false;
+      let quickWinsMessageActive = false;
+      document.querySelectorAll('[data-filter-view]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const after = button.dataset.filterView === 'after';
+          removalImage?.classList.toggle('is-after', after);
+          document.querySelectorAll('[data-filter-view]').forEach((item) => {
+            const selected = item === button;
+            item.classList.toggle('is-selected', selected);
+            item.setAttribute('aria-pressed', String(selected));
+          });
+          if (after && !quickWinsMessageShown) {
+            const comparisonCompanion = document.querySelector('.portfolio-companion');
+            const comparisonMessage = comparisonCompanion?.querySelector('.portfolio-companion-message p');
+            if (comparisonCompanion && comparisonMessage) {
+              quickWinsMessageShown = true;
+              quickWinsMessageActive = true;
+              comparisonMessage.textContent = 'Notice how much higher the products are now?';
+              comparisonCompanion.classList.add('is-visible');
+              comparisonCompanion.setAttribute('aria-hidden', 'false');
+            }
+          }
+        });
+      });
+      const pillsComparison = document.querySelector('.filter-pills-comparison');
+      document.querySelectorAll('[data-pills-view]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const after = button.dataset.pillsView === 'after';
+          pillsComparison?.classList.toggle('is-after', after);
+          document.querySelectorAll('[data-pills-view]').forEach((item) => {
+            const selected = item === button;
+            item.classList.toggle('is-selected', selected);
+            item.setAttribute('aria-pressed', String(selected));
+          });
+        });
+      });
+      document.querySelectorAll('.filtering-prototype').forEach((prototype) => {
+        const prototypeFrame = prototype.querySelector('.prototype-frame');
+        prototype.querySelectorAll('[data-prototype-view]').forEach((button) => {
+          button.addEventListener('click', () => {
+            const mobile = button.dataset.prototypeView === 'mobile';
+            prototypeFrame?.classList.toggle('is-mobile', mobile);
+            prototype.querySelectorAll('[data-prototype-view]').forEach((item) => {
+              const selected = item === button;
+              item.classList.toggle('is-selected', selected);
+              item.setAttribute('aria-pressed', String(selected));
+            });
+          });
+        });
+      });
+      const companion = document.querySelector('.portfolio-companion');
+      const companionClose = companion?.querySelector('button');
+      const companionTargets = [...document.querySelectorAll('.plp-analysis, .filtering-plan, .filter-quick-wins, .extra-space, .attribute-filters, .final-designs')];
+      const companionTarget = companionTargets[Math.floor(Math.random() * companionTargets.length)];
+      let companionDismissed = false;
+      companionClose?.setAttribute('tabindex', '-1');
+      companionClose?.addEventListener('click', () => {
+        companionDismissed = true;
+        companion.classList.remove('is-visible');
+        companion.setAttribute('aria-hidden', 'true');
+        companionClose.setAttribute('tabindex', '-1');
+      });
+      if (companion && companionTarget) {
+        const companionObserver = new IntersectionObserver(([entry]) => {
+          if (quickWinsMessageShown) return;
+          const visible = entry.isIntersecting && !companionDismissed;
+          companion.classList.toggle('is-visible', visible);
+          companion.setAttribute('aria-hidden', String(!visible));
+          companionClose?.setAttribute('tabindex', visible ? '0' : '-1');
+        }, { threshold: 0.32 });
+        companionObserver.observe(companionTarget);
+      }
+      const quickWinsSection = document.querySelector('.filter-quick-wins');
+      if (companion && quickWinsSection) {
+        const quickWinsMessageObserver = new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting || !quickWinsMessageActive) return;
+          quickWinsMessageActive = false;
+          companion.classList.remove('is-visible');
+          companion.setAttribute('aria-hidden', 'true');
+        }, { threshold:0 });
+        quickWinsMessageObserver.observe(quickWinsSection);
+      }
+      const companionMascot = companion?.querySelector(':scope > img');
+      let companionDrag = null;
+      companionMascot?.addEventListener('pointerdown', (event) => {
+        const rect = companion.getBoundingClientRect();
+        companionDrag = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+        companion.classList.add('is-dragging');
+        companionMascot.setPointerCapture(event.pointerId);
+      });
+      companionMascot?.addEventListener('pointermove', (event) => {
+        if (!companionDrag) return;
+        const left = Math.max(8, Math.min(window.innerWidth - companion.offsetWidth - 8, event.clientX - companionDrag.x));
+        const top = Math.max(8, Math.min(window.innerHeight - companion.offsetHeight - 8, event.clientY - companionDrag.y));
+        companion.style.right = 'auto';
+        companion.style.bottom = 'auto';
+        companion.style.left = `${left}px`;
+        companion.style.top = `${top}px`;
+      });
+      const endCompanionDrag = (event) => {
+        if (!companionDrag) return;
+        companionDrag = null;
+        companion.classList.remove('is-dragging');
+        if (companionMascot.hasPointerCapture(event.pointerId)) companionMascot.releasePointerCapture(event.pointerId);
+      };
+      companionMascot?.addEventListener('pointerup', endCompanionDrag);
+      companionMascot?.addEventListener('pointercancel', endCompanionDrag);
+      const tocLinks = [...document.querySelectorAll('.case-toc a')];
+      const tocSections = tocLinks.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+      const tocObserver = new IntersectionObserver((entries) => {
+        const current = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!current) return;
+        tocLinks.forEach((link) => {
+          const active = link.getAttribute('href') === `#${current.target.id}`;
+          link.classList.toggle('is-active', active);
+          if (active) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      }, { rootMargin: '-18% 0px -62% 0px', threshold: [0, .2, .5] });
+      tocSections.forEach((section) => tocObserver.observe(section));
+    </script>
+  </body>
+</html>

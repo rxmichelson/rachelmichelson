@@ -1,0 +1,20 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Multicolor">
+<g clip-path="url(#clip0_0_237)">
+<path id="Pie Slice" d="M22 11C22 12.4445 21.7155 13.8749 21.1627 15.2095C20.6099 16.5441 19.7996 17.7567 18.7782 18.7782L11 11H22Z" fill="#FFCC00"/>
+<path id="Pie Slice_2" d="M18.7782 18.7782C17.7567 19.7996 16.5441 20.6099 15.2095 21.1627C13.8749 21.7155 12.4445 22 11 22L11 11L18.7782 18.7782Z" fill="#2E9E4F"/>
+<path id="Pie Slice_3" d="M11 22C8.08262 22 5.28473 20.8411 3.22183 18.7782L11 11L11 22Z" fill="#008080"/>
+<path id="Pie Slice_4" d="M3.22183 18.7782C1.15893 16.7153 1.83163e-06 13.9174 0 11L11 11L3.22183 18.7782Z" fill="#1976D2"/>
+<path id="Pie Slice_5" d="M0 11C2.55045e-07 8.08262 1.15892 5.28473 3.22182 3.22183L11 11L0 11Z" fill="#8E44AD"/>
+<path id="Pie Slice_6" d="M3.22182 3.22183C5.28472 1.15893 8.08261 4.13856e-06 11 0L11 11L3.22182 3.22183Z" fill="#E85B9E"/>
+<path id="Pie Slice_7" d="M11 0C13.9174 3.47894e-08 16.7153 1.15892 18.7782 3.22182L11 11L11 0Z" fill="#D32F2F"/>
+<path id="Pie Slice_8" d="M18.7782 3.22182C20.8411 5.28472 22 8.08261 22 11L11 11L18.7782 3.22182Z" fill="#F57C00"/>
+</g>
+<rect x="0.55" y="0.55" width="20.9" height="20.9" rx="10.45" stroke="#E3E3E3" stroke-width="1.1"/>
+</g>
+<defs>
+<clipPath id="clip0_0_237">
+<rect width="22" height="22" rx="11" fill="white"/>
+</clipPath>
+</defs>
+</svg>

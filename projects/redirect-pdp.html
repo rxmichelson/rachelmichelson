@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Redirect Optimization case study by Rachel Michelson." />
+    <title>Redirect Optimization — Rachel Michelson</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="inspo">
+    <main>
+      <nav class="site-nav" aria-label="Main navigation">
+        <div class="site-nav-inner">
+          <a class="wordmark" href="../index.html">Rachel Michelson</a>
+          <div class="nav-links">
+            <a class="nav-tab active" href="../index.html#work">Work</a>
+            <a class="nav-tab" href="../resume.html">Resume</a>
+            <a class="nav-tab" href="#contact" data-contact-open>Contact Me</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="case-layout">
+        <nav class="case-toc" aria-label="Redirect Optimization case study contents">
+          <p>Contents</p>
+          <a href="#overview">Overview</a>
+          <a href="#context">Context</a>
+          <a href="#redirect-types">Redirect types</a>
+          <a href="#problem">The problem</a>
+          <a href="#test-1">Test 1</a>
+          <a href="#new-tests">Follow-up designs</a>
+          <a href="#progressive-disclosure">Progressive disclosure</a>
+          <a href="#discount-method">Uplevel discount method</a>
+          <a href="#status">Status</a>
+        </nav>
+
+        <article class="modal-sheet case-study filtering-study redirect-pdp-study">
+          <a class="case-back" href="../index.html">← Back to work</a>
+          <header class="modal-header">
+            <h1>Redirect Optimization</h1>
+          </header>
+
+          <section class="filtering-intro" id="overview" aria-label="Project overview">
+            <div class="filtering-summary">
+              <section class="filtering-summary-card filtering-summary-overview">
+                <p class="eyebrow">Overview</p>
+                <p>Reworking a pivotal product-page experience to make decisions feel simple &amp; trustworthy.</p>
+              </section>
+              <section class="filtering-summary-card filtering-summary-impact">
+                <p class="eyebrow">Status</p>
+                <p class="modal-summary-copy">In development for follow-up A/B testing</p>
+              </section>
+              <section class="filtering-summary-card filtering-summary-role">
+                <p class="eyebrow">Role</p>
+                <p>Lead UX designer</p>
+              </section>
+            </div>
+            <div class="redirect-preview" aria-label="Redirect optimization preview">
+              <div class="redirect-preview-stage">
+                <video class="is-selected" data-redirect-video="session" autoplay muted loop playsinline preload="metadata" aria-label="Session redirect preview">
+                  <source src="../assets/redirect/session.mp4" type="video/mp4" />
+                </video>
+                <video data-redirect-video="discount-code" muted loop playsinline preload="metadata" aria-label="Discount code redirect preview">
+                  <source src="../assets/redirect/discount-code.mp4" type="video/mp4" />
+                </video>
+                <video data-redirect-video="account" muted loop playsinline preload="metadata" aria-label="Account redirect preview">
+                  <source src="../assets/redirect/account.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <div class="redirect-preview-toggle" role="group" aria-label="Choose redirect scenario">
+                <button type="button" class="is-selected" data-redirect-view="session" aria-pressed="true">Session</button>
+                <button type="button" data-redirect-view="discount-code" aria-pressed="false">Discount Code</button>
+                <button type="button" data-redirect-view="account" aria-pressed="false">Account</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="redirect-context" id="context" aria-labelledby="redirect-context-title">
+            <div class="redirect-context-copy">
+              <p class="eyebrow">Context</p>
+              <h2 id="redirect-context-title">What are redirects?</h2>
+              <p>A redirect sends experts from ExpertVoice to a brand’s website to complete their purchase using their expert discount.</p>
+            </div>
+            <video class="redirect-context-media" width="1188" height="800" autoplay muted loop playsinline preload="metadata" aria-label="Original redirect experience">
+              <source src="../assets/redirect/original.mp4" type="video/mp4" />
+            </video>
+          </section>
+
+          <section class="redirect-types" id="redirect-types" aria-labelledby="redirect-types-title">
+            <h2 id="redirect-types-title">Three main redirect types</h2>
+            <div class="redirect-type-grid">
+              <article class="redirect-type-card">
+                <p><strong>Session redirects</strong> send an expert to the brand’s site with data that automatically identifies them and applies their eligible discount.</p>
+              </article>
+              <article class="redirect-type-card">
+                <p><strong>Discount code redirects</strong> send an expert to the brand’s site with a code they apply to receive their expert discount.</p>
+              </article>
+              <article class="redirect-type-card">
+                <p><strong>Account redirects</strong> send an expert to the brand’s site, where they sign in using the same email linked to their ExpertVoice account.</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="redirect-problem" id="problem" aria-labelledby="redirect-problem-title">
+            <p class="eyebrow">Problem</p>
+            <h2 id="redirect-problem-title">The current redirect experience is untrustworthy &amp; confusing</h2>
+            <div class="redirect-problem-media">
+              <img src="../assets/redirect/original-annotated.png" width="3520" height="2544" alt="The original redirect experience with annotations" />
+              <video width="572" height="640" autoplay muted loop playsinline preload="metadata" aria-label="Black Diamond redirect modal">
+                <source src="../assets/redirect/black-diamond-modal.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </section>
+
+          <section class="redirect-test" id="test-1" aria-labelledby="redirect-test-one-title">
+            <p class="eyebrow">Test 1</p>
+            <h2 id="redirect-test-one-title">We A/B tested an embedded component to replace the modal</h2>
+            <div class="redirect-test-layout">
+              <video class="redirect-test-video" width="1100" height="574" autoplay muted loop playsinline preload="metadata" aria-label="Embedded redirect component A/B test">
+                <source src="../assets/redirect/ab-test-1.mp4" type="video/mp4" />
+              </video>
+              <div class="redirect-test-metrics">
+                <article class="redirect-test-metric">
+                  <p class="eyebrow">New users</p>
+                  <p><strong class="is-negative">-10.5%</strong> redirect order $s</p>
+                  <small>Statistically significant</small>
+                </article>
+                <article class="redirect-test-metric">
+                  <p class="eyebrow">Recurring users</p>
+                  <p><strong class="is-positive">+0.23%</strong> redirect order $s</p>
+                  <small>Trending</small>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section class="redirect-new-tests" id="new-tests" aria-labelledby="redirect-new-tests-title">
+            <h2 id="redirect-new-tests-title">Follow-up designs</h2>
+            <p>With analysis &amp; decisions</p>
+            <h3>Price needs to be anchored to the CTA, so users know exactly what they will pay.</h3>
+            <div class="redirect-price-comparison">
+              <figure>
+                <img src="../assets/redirect/price-test.png" width="1816" height="2204" alt="Failed redirect price treatment" />
+                <figcaption>Failed test</figcaption>
+              </figure>
+              <figure>
+                <img src="../assets/redirect/price-new.png" width="1652" height="2200" alt="New redirect price design" />
+                <figcaption>New designs</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="redirect-disclosure" id="progressive-disclosure" aria-labelledby="redirect-disclosure-title">
+            <h2 id="redirect-disclosure-title">Use progressive disclosure</h2>
+            <p class="redirect-disclosure-copy">Original experience was <strong>back-loaded</strong> with information, overwhelming users when they were ready to purchase.</p>
+            <div class="redirect-disclosure-preview">
+              <div class="redirect-disclosure-stage">
+                <video class="is-selected" data-disclosure-video="original" autoplay muted loop playsinline preload="metadata" aria-label="Original redirect experience">
+                  <source src="../assets/redirect/original.mp4" type="video/mp4" />
+                </video>
+                <video data-disclosure-video="failed-test" muted loop playsinline preload="metadata" aria-label="Failed embedded-component test">
+                  <source src="../assets/redirect/ab-test-1.mp4" type="video/mp4" />
+                </video>
+                <video data-disclosure-video="new-designs" muted loop playsinline preload="metadata" aria-label="New discount-code redirect design">
+                  <source src="../assets/redirect/discount-code.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <div class="redirect-disclosure-toggle" role="group" aria-label="Compare progressive disclosure designs">
+                <button type="button" class="is-selected" data-disclosure-view="original" aria-pressed="true">Original</button>
+                <button type="button" data-disclosure-view="failed-test" aria-pressed="false">Failed test</button>
+                <button type="button" data-disclosure-view="new-designs" aria-pressed="false">New designs</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="redirect-discount-method" id="discount-method" aria-labelledby="redirect-discount-method-title">
+            <h2 id="redirect-discount-method-title">Uplevel discount method</h2>
+            <p>Unexplained discounts feel too good to be true</p>
+            <figure class="redirect-discount-slides" aria-label="Discount method examples">
+              <img class="is-selected" src="../assets/redirect/code-highlighted.png" width="2212" height="928" alt="A discount code highlighted in the redirect design" aria-hidden="false" />
+              <img src="../assets/redirect/unique-link.png" width="2212" height="924" alt="A unique discount link highlighted in the redirect design" aria-hidden="true" />
+              <img src="../assets/redirect/account-highlighted.png" width="2212" height="928" alt="An account-based discount highlighted in the redirect design" aria-hidden="true" />
+            </figure>
+          </section>
+
+          <section class="redirect-status" id="status" aria-labelledby="redirect-status-title">
+            <h2 id="redirect-status-title">Status: in development</h2>
+            <div class="redirect-preview" aria-label="Redirect optimization preview">
+              <div class="redirect-preview-stage">
+                <video class="is-selected" data-final-redirect-video="session" autoplay muted loop playsinline preload="metadata" aria-label="Session redirect preview">
+                  <source src="../assets/redirect/session.mp4" type="video/mp4" />
+                </video>
+                <video data-final-redirect-video="discount-code" muted loop playsinline preload="metadata" aria-label="Discount code redirect preview">
+                  <source src="../assets/redirect/discount-code.mp4" type="video/mp4" />
+                </video>
+                <video data-final-redirect-video="account" muted loop playsinline preload="metadata" aria-label="Account redirect preview">
+                  <source src="../assets/redirect/account.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <div class="redirect-preview-toggle" role="group" aria-label="Choose final redirect scenario">
+                <button type="button" class="is-selected" data-final-redirect-view="session" aria-pressed="true">Session</button>
+                <button type="button" data-final-redirect-view="discount-code" aria-pressed="false">Discount Code</button>
+                <button type="button" data-final-redirect-view="account" aria-pressed="false">Account</button>
+              </div>
+            </div>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer><p>© 2026 Rachel Michelson</p></footer>
+    <script src="../script.js"></script>
+    <script>
+      const tocLinks = [...document.querySelectorAll('.case-toc a')];
+      const tocSections = tocLinks.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+      const tocObserver = new IntersectionObserver((entries) => {
+        const current = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!current) return;
+        tocLinks.forEach((link) => {
+          const active = link.getAttribute('href') === `#${current.target.id}`;
+          link.classList.toggle('is-active', active);
+          if (active) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      }, { rootMargin: '-18% 0px -62% 0px', threshold: [0, .2, .5] });
+      tocSections.forEach((section) => tocObserver.observe(section));
+
+      const redirectViewButtons = [...document.querySelectorAll('[data-redirect-view]')];
+      const redirectVideos = [...document.querySelectorAll('[data-redirect-video]')];
+      redirectViewButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          redirectViewButtons.forEach((item) => {
+            const selected = item === button;
+            item.classList.toggle('is-selected', selected);
+            item.setAttribute('aria-pressed', String(selected));
+          });
+          redirectVideos.forEach((video) => {
+            const selected = video.dataset.redirectVideo === button.dataset.redirectView;
+            video.classList.toggle('is-selected', selected);
+            if (selected) {
+              video.currentTime = 0;
+              video.play().catch(() => {});
+            } else {
+              video.pause();
+            }
+          });
+        });
+      });
+
+      const disclosureButtons = [...document.querySelectorAll('[data-disclosure-view]')];
+      const disclosureVideos = [...document.querySelectorAll('[data-disclosure-video]')];
+      const disclosureCopy = document.querySelector('.redirect-disclosure-copy');
+      const disclosureDescriptions = {
+        original: 'Original experience was <strong>back-loaded</strong> with information, overwhelming users when they were ready to purchase.',
+        'failed-test': 'The tested designs were <strong>front-loaded</strong> with information, overwhelming users with information before they had any purchase intent.',
+        'new-designs': 'Reveal instructions <strong>progressively</strong> as purchase intent increases, rather than showing everything at once.',
+      };
+      disclosureButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          disclosureButtons.forEach((item) => {
+            const selected = item === button;
+            item.classList.toggle('is-selected', selected);
+            item.setAttribute('aria-pressed', String(selected));
+          });
+          disclosureVideos.forEach((video) => {
+            const selected = video.dataset.disclosureVideo === button.dataset.disclosureView;
+            video.classList.toggle('is-selected', selected);
+            if (selected) {
+              video.currentTime = 0;
+              video.play().catch(() => {});
+            } else {
+              video.pause();
+            }
+          });
+          if (disclosureCopy) disclosureCopy.innerHTML = disclosureDescriptions[button.dataset.disclosureView];
+        });
+      });
+
+      const discountSlides = [...document.querySelectorAll('.redirect-discount-slides img')];
+      if (discountSlides.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        let activeDiscountSlide = 0;
+        window.setInterval(() => {
+          activeDiscountSlide = (activeDiscountSlide + 1) % discountSlides.length;
+          discountSlides.forEach((slide, index) => {
+            const selected = index === activeDiscountSlide;
+            slide.classList.toggle('is-selected', selected);
+            slide.setAttribute('aria-hidden', String(!selected));
+          });
+        }, 3000);
+      }
+
+      const finalRedirectButtons = [...document.querySelectorAll('[data-final-redirect-view]')];
+      const finalRedirectVideos = [...document.querySelectorAll('[data-final-redirect-video]')];
+      finalRedirectButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          finalRedirectButtons.forEach((item) => {
+            const selected = item === button;
+            item.classList.toggle('is-selected', selected);
+            item.setAttribute('aria-pressed', String(selected));
+          });
+          finalRedirectVideos.forEach((video) => {
+            const selected = video.dataset.finalRedirectVideo === button.dataset.finalRedirectView;
+            video.classList.toggle('is-selected', selected);
+            if (selected) {
+              video.currentTime = 0;
+              video.play().catch(() => {});
+            } else {
+              video.pause();
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

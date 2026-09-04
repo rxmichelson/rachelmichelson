@@ -1,0 +1,1057 @@
+/* Source Sans 3 — variable font, vendored so the prototype works offline.
+   The source demo loaded this from fonts.googleapis.com. */
+@font-face {
+  font-display: swap;
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 400 700;
+  src: url('assets/fonts/source-sans-3.woff2') format('woff2');
+}
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark-1:  #252525;
+      --mid-0:   #4d4d4d;
+      --mid-1:   #757575;
+      --mid-2:   #9d9d9d;
+      --mid-3:   #c5c5c5;
+      --light-1: #e3e3e3;
+      --light-2: #f2f2f2;
+      --white:   #ffffff;
+      --info:    #3c98c7;
+      --save:    #e85826;
+      --orange:  #ee5720;
+      --font: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      color: var(--dark-1);
+      background: #fff;
+      font-size: 15px;
+      line-height: 21px;
+    }
+
+    /* ── Page ── */
+    .page { max-width: 1280px; margin: 0 auto; padding-bottom: 80px; }
+
+    /* ── Search header ── */
+    .search-header { padding: 28px 48px 24px; }
+    .search-title { font-size: 24px; font-weight: 600; line-height: 24px; }
+    .result-count { font-size: 15px; color: var(--mid-1); margin-top: 4px; }
+
+    /* ── Taxon row ── */
+    .taxon-row {
+      display: flex;
+      padding: 0 48px 24px;
+      overflow-x: auto;
+    }
+    .taxon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      min-width: 86px;
+      padding: 4px 0;
+    }
+    .taxon-circle {
+      width: 86px;
+      height: 86px;
+      border-radius: 12px;
+      background: var(--light-2);
+      border: 1px solid var(--light-1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .taxon-circle img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .taxon-item:hover .taxon-circle { background: #e8e8e8; }
+    .taxon-item.active .taxon-circle { border-color: var(--dark-1); border-width: 2px; }
+    .taxon-label { font-size: 13px; line-height: 16px; text-align: center; color: var(--dark-1); max-width: 86px; }
+    .taxon-see-all .taxon-circle {
+      border-radius: 12px; background: #fff;
+      border: 1px solid var(--mid-1); font-size: 13px; font-weight: 600;
+      color: var(--mid-1); gap: 4px; flex-direction: row;
+    }
+
+    /* ── Brand carousel — Figma node 52:8073 ──
+       86×86 logo tile, 12px radius, 6px gap to an 18px-tall label. */
+    .brand-row {
+      display: flex; gap: 24px; align-items: flex-start;
+      padding: 0 48px 24px;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .brand-row::-webkit-scrollbar { display: none; }
+    .brand-item {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      width: 86px; flex-shrink: 0;
+      background: none; border: none; padding: 0;
+      font-family: var(--font);
+    }
+    .brand-logo {
+      width: 86px; height: 86px; border-radius: 12px;
+      background: #f7f7f7; border: 1px solid #e1e1e1; overflow: hidden; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .brand-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .brand-name {
+      font-size: 13px; line-height: 18px; color: var(--dark-1);
+      text-align: center; word-break: break-word;
+    }
+    /* An outlined pill sitting centred on the 86px logo band, not a text link */
+    .brand-all {
+      display: flex; align-items: center; gap: 4px;
+      align-self: flex-start; margin-top: 20.5px;   /* (86 - 45) / 2 */
+      height: 45px; padding: 0 12px 0 16px;
+      background: #fff; border: 1px solid var(--mid-1); border-radius: 30px;
+      cursor: pointer; flex-shrink: 0;
+      font-family: var(--font); font-size: 15px; font-weight: 400;
+      color: var(--mid-1);
+      transition: background 0.14s;
+    }
+    .brand-all:hover { background: var(--light-2); }
+
+    /* Portfolio embed: begin the preview at the filtering controls. */
+    body.filters-preview .search-header,
+    body.filters-preview .brand-row { display: none; }
+
+    /* ── Loading spinner ──
+       Straight port of exp-react-components packages/components/src/loadingSpinner:
+       same markup, rings, animation and full-viewport overlay. The svgs sit at the
+       component's own `50% - 150px` offset, which renders slightly above centre —
+       that is how the shipped spinner looks, not a mistake here. */
+    .loader-wrapper {
+      background-color: var(--light-1);
+      display: block;
+      height: 100%;
+      left: 0;
+      opacity: 0.5;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 900;
+    }
+    .loader-wrapper .spinner {
+      display: block; width: 100%; height: 100%;
+      margin: 0 auto; overflow: hidden; position: relative;
+    }
+    .loader-wrapper .spinner svg {
+      margin: 0; padding: 0;
+      position: fixed;
+      left: calc(50% - 75px);
+      top: calc(50% - 150px);
+    }
+    /* nested under .spinner in the source LESS, so it outranks the svg reset
+       above — flatten it here and the 55px centring margin is lost */
+    .loader-wrapper .spinner .bolt { fill: #696969; margin: 55px; }
+    .loader-wrapper .spinner .animated-ring {
+      transform-origin: 50% 50%;
+      animation: exp-ux-spin 2s infinite linear;
+    }
+    .loader-wrapper .spinner .animated-ring circle {
+      fill: none; stroke: #EF4036; stroke-dasharray: 50 50; stroke-width: 1px;
+    }
+    .loader-wrapper .spinner .background-ring circle {
+      fill: none; stroke: rgba(175, 175, 175, 0.5);
+    }
+
+    @keyframes exp-ux-spin {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(359deg); }
+    }
+
+    /* ── Filter section ── */
+    /* Sticks to the top of the viewport as the grid scrolls under it. Sits below
+       the popover (500) and the All Filters panel (800) so both still cover it. */
+    .filter-section {
+      /* 8px under the pills, then the rule. Carried as padding rather than margin:
+         the bar is sticky, so the gap has to be painted or the grid shows through
+         it and rides above the rule while scrolling. */
+      padding: 12px 48px 8px;
+      border-bottom: 1px solid var(--light-1);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 0;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: #fff;
+    }
+
+    /* Pills scroll container */
+    .pills-scroll-wrap { position: relative; }
+
+
+    /* Scroll arrow buttons */
+    .scroll-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid #757575;
+      box-shadow: 0 0 2px rgba(0,0,0,0.25), 0 2px 5px rgba(0,0,0,0.25);
+      cursor: pointer; z-index: 10;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .scroll-btn:hover { background: #fff; }
+    .scroll-btn--left  { left: 0; }
+    .scroll-btn--right { right: 0; }
+    .scroll-btn[hidden] { display: none !important; }
+
+    /* Pills row */
+    .pills-row {
+      display: flex; gap: 6px; align-items: center;
+      flex-wrap: nowrap; overflow-x: auto;
+      scrollbar-width: none; scroll-behavior: smooth;
+      padding: 3px 0; /* prevent box-shadow clip */
+    }
+    .pills-row::-webkit-scrollbar { display: none; }
+
+    /* ── Base pill ── */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      border-radius: 30px;
+      font-family: var(--font);
+      font-size: 15px;
+      /* Regular, not the SemiBold the Figma node specifies — Rachel's call */
+      font-weight: 400;
+      line-height: 21px;
+      white-space: nowrap;
+      cursor: pointer;
+      /* Figma 4:1549 strokes the pill with Medium Gray/1 */
+      border: 1px solid var(--mid-1);
+      background: var(--white);
+      color: var(--dark-1);
+      transition: background 0.14s, border-color 0.14s, color 0.14s;
+      user-select: none;
+      position: relative; /* for positioning reference */
+    }
+    .pill:hover:not(.pill--fixed):not(.pill--open):not(.active) { background: var(--light-2); }
+    /* 12px on whichever side carries a glyph, 16px on the bare text side */
+    .pill--label-chev      { padding: 12px 12px 12px 16px; }
+    .pill--icon-label      { padding: 12px 16px 12px 12px; }
+    .pill--icon-label-chev { padding: 12px; }
+    .pill--toggle          { padding: 12px 16px; }
+
+    /* Active = black (filter applied) */
+    .pill.active {
+      background: var(--dark-1);
+      border-color: var(--dark-1);
+      color: var(--white);
+    }
+    .pill.active:hover { background: #252525; border-color: #252525; }
+
+    /* Opened = light gray, dark text */
+    .pill.pill--open {
+      background: var(--light-2);
+      border-color: var(--mid-1);
+      color: var(--dark-1);
+    }
+    .pill.pill--open:hover { background: #e8e8e8; }
+
+    /* Dropdown-open pill chevron rotates up */
+    .pill.pill--open .pill-chevron { transform: rotate(180deg); }
+
+    /* Fixed pills — all-filters is clickable, sort is not */
+    .pill--fixed { cursor: default; }
+    .pill--all-filters { cursor: pointer; }
+
+    .pill-icon {
+      width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pill-chevron {
+      width: 18px; height: 18px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    /* ── Applied row ── */
+    .applied-row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 100px;
+      background: var(--light-2);
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--dark-1);
+      line-height: 21px;
+      height: 45px;
+      white-space: nowrap;
+      animation: chip-in 0.15s ease;
+    }
+    @keyframes chip-in {
+      from { opacity: 0; transform: scale(0.92); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .chip-x {
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0;
+      padding: 2px; border-radius: 50%;
+      border: none; background: none;
+      transition: background 0.12s;
+    }
+    .chip-x:hover { background: var(--mid-3); }
+
+    .clear-all {
+      font-family: var(--font);
+      font-size: 15px; font-weight: 600;
+      color: var(--info);
+      cursor: pointer; background: none; border: none;
+      padding: 0 4px; white-space: nowrap; line-height: 21px;
+    }
+    .clear-all:hover { text-decoration: underline; }
+
+    /* ── Dropdown ── */
+    .dropdown {
+      position: fixed;
+      /* one width for every popover — keep in sync with DROPDOWN_WIDTH in script.js */
+      width: 375px;
+      background: #fff;
+      border-radius: 12px;
+      /* drop-shadow rather than box-shadow so the shade wraps the caret too —
+         a box-shadow paints the panel rect only and leaves the caret seamed */
+      filter: drop-shadow(0 2px 5.5px rgba(0,0,0,0.18));
+      overflow: visible;
+      z-index: 500;
+      display: none;
+    }
+    .dropdown.open { display: block; }
+
+    /* Caret — the 15 × 7.5 Figma export, pointing back at the pill the popover
+       opened from. positionDropdown() sets its left. */
+    .dropdown-caret {
+      display: block;
+      position: absolute;
+      top: -7.5px;
+      width: 15px;
+      height: 7.5px;
+      background: url("popover-caret.svg") no-repeat center / 15px 7.5px;
+    }
+
+    /* Items */
+    .dropdown-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 6px 4px;
+    }
+    /* Category popover matches Figma content frame: 8px pad, 4px gap.
+       Bottom is 16px (content 8px pad + 8px gap to the footer divider). */
+    .dropdown--category .dropdown-items { padding: 8px 8px 16px; gap: 4px; }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 0;
+      cursor: pointer;
+      border-bottom: none;
+    }
+    .dropdown-item:not(:last-child) { border-bottom: none; }
+    .dropdown-item:hover .item-label { color: var(--dark-1); }
+
+    /* Checkbox */
+    .item-checkbox {
+      width: 18px; height: 18px;
+      border: 1px solid var(--mid-3);
+      border-radius: 3px;
+      background: #fff;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.12s, border-color 0.12s;
+    }
+    .dropdown-item.checked .item-checkbox {
+      background: #3C98C7;
+      border-color: #3C98C7;
+    }
+    .checkbox-check {
+      display: none;
+    }
+    .dropdown-item.checked .checkbox-check { display: block; }
+
+    .item-label {
+      font-size: 15px; font-weight: 400;
+      color: var(--dark-1); line-height: 21px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .item-count {
+      font-size: 15px; font-weight: 400;
+      color: var(--mid-2); line-height: 21px;
+      flex: 1;
+    }
+
+    /* Footer */
+    /* Figma 6:6061 — 12px/18px padding, 12px gap, 1px #e3e3e3 top rule */
+    .dropdown-footer {
+      display: flex;
+      gap: 12px;
+      padding: 12px 18px;
+      background: #fff;
+      border-top: 1px solid var(--light-1);
+      border-radius: 0 0 12px 12px;
+    }
+    .dropdown-btn-clear {
+      flex: 1 0 0; min-width: 0;
+      padding: 14px 24px;
+      border-radius: 21px;
+      border: 1px solid var(--mid-3);
+      background: #fff;
+      font-family: var(--font);
+      font-size: 15px; font-weight: 600;
+      color: var(--mid-3);
+      cursor: default;
+      transition: color 0.15s, border-color 0.15s;
+      line-height: 14px;
+    }
+    /* only live once something is actually applied. No hover fill: the button is
+       destructive and sits next to Done, so it stays quiet until it is pressed. */
+    .dropdown-btn-clear.has-selection {
+      cursor: pointer;
+      color: var(--mid-1);
+      border-color: var(--mid-1);
+    }
+
+    .dropdown-btn-done {
+      flex: 1 0 0; min-width: 0;
+      padding: 14px 24px;
+      border-radius: 21px;
+      background: var(--orange);
+      border: none;
+      font-family: var(--font);
+      font-size: 15px; font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.15s;
+      line-height: 14px;
+    }
+    .dropdown-btn-done:hover { background: #d94d1a; }
+
+    /* ── Category drilldown (dropdown) — Figma "Filter Item Final" ── */
+    .cat-breadcrumb {
+      display: flex; align-items: center; gap: 0;
+      background: none; border: none; cursor: pointer;
+      padding: 0; height: 22px;
+      font-family: var(--font); font-size: 13px; font-weight: 400;
+      color: var(--info); line-height: 18px;
+    }
+    .cat-bc-icon { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .cat-breadcrumb:hover span:last-child { text-decoration: underline; }
+
+    /* Children span the full row width (same hover fill as the header);
+       only the label is indented 12px further via left padding. */
+    .cat-children { display: flex; flex-direction: column; gap: 4px; width: 100%; }
+
+    .cat-row {
+      display: flex; align-items: center; gap: 6px;
+      height: 46px; padding: 8px; width: 100%;
+      cursor: pointer; border-radius: 12px;
+      transition: background 0.1s;
+    }
+    .cat-row--child { padding-left: 20px; }
+    .cat-row:hover { background: var(--light-2); }
+    .cat-label { font-size: 15px; font-weight: 400; line-height: 21px; color: var(--dark-1); white-space: nowrap; flex-shrink: 0; }
+    .cat-row.selected .cat-label { font-weight: 600; }
+    .cat-count { font-size: 15px; font-weight: 400; line-height: 21px; color: var(--mid-2); flex: 1 0 0; min-width: 0; }
+    .cat-selected-tag { font-size: 15px; font-weight: 400; color: var(--mid-2); line-height: 21px; flex-shrink: 0; }
+    .cat-chev-r { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 22px; height: 22px; }
+
+    /* ── All Filters Panel ── */
+    .af-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 700; opacity: 0; pointer-events: none;
+      transition: opacity 0.25s;
+    }
+    .af-overlay.open { opacity: 1; pointer-events: all; }
+
+    /* Flyout 168:1908 — 375 wide, 72px header, 108px footer, content inset 18px */
+    .af-panel {
+      position: fixed; top: 0; left: 0; bottom: 0;
+      width: 375px; background: #fff; z-index: 800;
+      transform: translateX(-100%);
+      transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    .af-panel.open { transform: translateX(0); }
+
+    @media (max-width: 400px) {
+      .af-panel {
+        top: auto; left: 0; right: 0; bottom: 0;
+        width: 100%; max-height: calc(100dvh - 30px);
+        border-radius: 24px 24px 0 0;
+        transform: translateY(100%);
+      }
+      .af-panel.open { transform: translateY(0); }
+        .af-item-label { font-size: 18px; line-height: 24px; }
+      .af-item-count { font-size: 18px; line-height: 24px; }
+      .af-cat-label { font-size: 18px; line-height: 24px; }
+      .af-cat-count { font-size: 18px; line-height: 24px; }
+      .af-instock-label { font-size: 18px; line-height: 24px; }
+    }
+
+    /* Header 168:1909 — 18px padding, title left in a flex-1 slot, 36px close.
+       Not the centred title the sheet uses; the panel reads as a page header. */
+    /* Figma draws every divider inside its 60/72px frame, so the rules are
+       inset shadows — a real border would add a pixel to each row's pitch. */
+    .af-header {
+      display: flex; align-items: center; gap: 8px;
+      padding: 18px; flex-shrink: 0;
+      box-shadow: inset 0 -1px 0 var(--light-1);
+    }
+    .af-title { flex: 1 0 0; min-width: 0; font-size: 21px; font-weight: 600; line-height: 27px; }
+    .af-close-btn {
+      width: 36px; height: 36px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; background: none; border: none; border-radius: 50%;
+      transition: background 0.15s;
+    }
+    .af-close-btn:hover { background: var(--light-2); }
+
+    /* Primary Content 168:1915 — the 18px side inset lives here, so every row
+       and every divider below is edge-aligned without repeating the padding. */
+    .af-body { flex: 1; min-height: 0; overflow-y: auto; padding: 6px 18px 18px; }
+
+    /* Root of the panel is a navigation list: label, optional value, chevron */
+    .af-back-btn {
+      position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+      width: 32px; height: 32px; border: none; background: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; border-radius: 50%;
+    }
+    .af-back-btn:hover { background: var(--light-2); }
+    .af-back-btn[hidden] { display: none; }
+    /* Filter Item Final 168:2004 — 60px row holding a 46px item. The label is
+       Regular, not semibold: weight is reserved for the category header row. */
+    .af-nav-row {
+      display: flex; align-items: center; gap: 8px;
+      min-height: 60px; padding: 7px 0; width: 100%;
+      background: none; border: none;
+      font-family: var(--font); text-align: left; cursor: pointer;
+      transition: background 0.1s;
+    }
+    .af-nav-row:hover .af-nav-label { color: #000; }
+    .af-nav-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+    .af-nav-label { font-size: 15px; font-weight: 400; line-height: 21px; color: var(--dark-1); }
+    .af-nav-value {
+      font-size: 13px; line-height: 18px; color: var(--mid-1);
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    /* 168:1931 drops the summary line on an open row. Kept here instead: the
+       header has to be the same height, style and parts whether the row is
+       collapsed or expanded, so nothing shifts when it opens. */
+    /* Chevron Container 168:2012 — a 36px slot carrying an 18px glyph. Rows
+       expand in place, so the affordance is Plus SM → Minus, not a chevron. */
+    .af-nav-toggle {
+      margin-left: auto; flex-shrink: 0; width: 36px; height: 18px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    /* standalone checkbox rows at the foot of the list — 168:2063 / 168:2073.
+       18px box in a 24px slot, so the label lands 30px in. */
+    .af-check-row {
+      display: flex; align-items: center; gap: 6px;
+      height: 60px; padding: 0; width: 100%;
+      background: none; border: none; box-shadow: inset 0 -1px 0 var(--light-1);
+      font-family: var(--font); font-size: 15px; line-height: 21px; color: var(--dark-1);
+      text-align: left; cursor: pointer; transition: background 0.1s;
+    }
+    .af-check-box {
+      width: 18px; height: 18px; flex-shrink: 0; margin-right: 6px;
+      border: 1px solid var(--mid-3); border-radius: 3px; background: #fff;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .af-check-row.is-on .af-check-box { background: var(--info); border-color: var(--info); }
+    .af-check-box svg { display: none; }
+    .af-check-row.is-on .af-check-box svg { display: block; }
+    /* Expanded body 168:1941 — content sits 8px inside the row label, with the
+       4px gap under the header and 10.5px tail the node draws. */
+    .af-row-body { padding: 4px 8px 10.5px; }
+    .af-row-body .fam-grid { padding-bottom: 0; }
+    .af-row { box-shadow: inset 0 -1px 0 var(--light-1); }
+    /* 168:1931 — the header tightens once the row is open, leaving 8px under the
+       text block. The space *above* the text is whatever the collapsed row already
+       had, so the label holds still on expand and only what sits under it moves up.
+       That inset differs by row type, hence the two rules. */
+    /* Label only: centred in the 60px row puts it 19.5px down. */
+    .af-row.is-open > .af-nav-row {
+      min-height: 48.5px;
+      padding: 19.5px 0 8px;
+    }
+    /* Label + summary: the 42px two-line block centres 9px down instead. Using the
+       19.5px above would drop the label 10.5px and grow the header on expand. */
+    .af-row.is-open > .af-nav-row:has(.af-nav-value) {
+      min-height: 0;
+      padding: 9px 0 8px;
+    }
+    /* Rows inside the body bleed their hover fill back out to the 18px inset */
+    .af-row-body .val-row,
+    .af-row-body .af-item { margin: 0 -8px; padding-left: 8px; padding-right: 8px; }
+
+
+    /* Checkbox / radio items */
+    .af-item {
+      display: flex; align-items: center; gap: 6px;
+      padding: 6px 16px; cursor: pointer; transition: background 0.1s;
+    }
+    .af-item:hover { background: var(--light-2); }
+    .af-cb {
+      width: 18px; height: 18px; flex-shrink: 0;
+      border: 1px solid var(--mid-3); border-radius: 3px; background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.12s, border-color 0.12s;
+    }
+    .af-item.af-checked .af-cb { background: #3C98C7; border-color: #3C98C7; }
+    .af-cb-check { display: none; }
+    .af-item.af-checked .af-cb-check { display: block; }
+    .af-rb {
+      width: 18px; height: 18px; flex-shrink: 0;
+      border: 1.5px solid var(--mid-3); border-radius: 50%; background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.12s;
+    }
+    .af-item.af-checked .af-rb { border-color: #3C98C7; }
+    .af-rb-dot { display: none; width: 10px; height: 10px; border-radius: 50%; background: #3C98C7; }
+    .af-item.af-checked .af-rb-dot { display: block; }
+    .af-item-label { font-size: 15px; line-height: 21px; }
+    .af-item-count { font-size: 15px; color: var(--mid-1); line-height: 21px; margin-left: 4px; }
+
+    /* Brands search box */
+    .af-search-wrap { padding: 4px 20px 8px; position: relative; }
+    .af-search-icon {
+      position: absolute; left: 32px; top: 50%; transform: translateY(-50%);
+      pointer-events: none; display: flex; align-items: center;
+    }
+    .af-search {
+      width: 100%; border: 1px solid var(--mid-3); border-radius: 100px;
+      padding: 8px 12px 8px 36px;
+      font-family: var(--font); font-size: 15px;
+      outline: none; background: #fff; transition: border-color 0.15s;
+    }
+    .af-search:focus { border-color: var(--dark-1); }
+
+    /* Category tree */
+    .af-cat-node {
+      display: flex; align-items: center; gap: 4px;
+      cursor: pointer; border-radius: 4px; transition: background 0.1s;
+    }
+    .af-cat-node:hover { background: var(--light-2); }
+    .af-cat-chevron {
+      width: 22px; height: 22px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--dark-1); transition: transform 0.15s;
+    }
+    .af-cat-node.cat-open .af-cat-chevron { transform: rotate(90deg); }
+    .af-cat-label { font-size: 15px; line-height: 21px; white-space: nowrap; }
+    .af-cat-label.semibold { font-weight: 600; }
+    .af-cat-count { font-size: 15px; color: var(--mid-1); line-height: 21px; margin-left: 4px; }
+
+    /* In stock standalone */
+    .af-instock {
+      border-top: 1px solid var(--light-1);
+      display: flex; align-items: center; gap: 6px;
+      padding: 12px 16px; cursor: pointer; transition: background 0.1s;
+    }
+    .af-instock:hover { background: var(--light-2); }
+    .af-instock-label { font-size: 15px; font-weight: 600; line-height: 21px; }
+
+    /* Bottom Buttons 168:2085 — 18px padding, the live result count above the
+       pair, and a white gradient so list content fades under the rule. */
+    .af-footer {
+      flex-shrink: 0; display: flex; flex-direction: column; gap: 12px;
+      padding: 18px; box-shadow: inset 0 1px 0 var(--light-1);
+      background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #fff 22.659%);
+    }
+    .af-result-count { font-size: 13px; line-height: 18px; color: var(--mid-1); }
+    .af-footer-btns { display: flex; gap: 12px; align-items: center; }
+    /* both buttons are 42px tall in Figma — the outline's stroke sits inside */
+    .af-btn-clear {
+      flex: 1 0 0; min-width: 0; height: 42px; padding: 0 24px; border-radius: 21px;
+      border: 1px solid var(--mid-3); background: #fff;
+      font-family: var(--font); font-size: 15px; font-weight: 600; line-height: 14px;
+      color: var(--mid-3); cursor: default;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    /* Outline Button Dark 168:2089 is drawn at #757575 — that's the live state;
+       it stays disabled-grey until something is actually applied. */
+    .af-btn-clear.af-active { color: var(--mid-1); border-color: var(--mid-1); cursor: pointer; }
+    .af-btn-clear.af-active:hover { background: var(--light-2); }
+    .af-btn-done {
+      flex: 1 0 0; min-width: 0; height: 42px; padding: 0 24px; border-radius: 21px;
+      background: var(--orange); border: none;
+      font-family: var(--font); font-size: 15px; font-weight: 600; line-height: 14px;
+      color: #fff; cursor: pointer; transition: background 0.15s;
+    }
+    .af-btn-done:hover { background: #d94d1a; }
+
+    /* ── Product grid ── */
+    /* the matching 12px under the rule lives here, outside the sticky box, so the
+       grid scrolls cleanly under it */
+    .results-section { padding: 12px 48px 0; }
+    .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px 24px; }
+    /* Card rhythm is fixed, not content-driven, so every column lines up:
+       image → 12 → brand → 4 → name (2 lines reserved) → 12 → price → 4 → MSRP */
+    .product-card { display: flex; flex-direction: column; cursor: pointer; }
+    .product-img {
+      aspect-ratio: 1; border-radius: 4px;
+      background: #f7f7f7;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 44px;
+      transition: background 0.15s;
+      margin-bottom: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+    .product-card:hover .product-img { background: #eeeeee; }
+    .product-img img {
+      width: 100%; height: 100%; object-fit: contain; display: block;
+      mix-blend-mode: darken;
+    }
+    .product-brand { font-size: 18px; font-weight: 600; color: var(--dark-1); line-height: 24px; }
+    .product-name {
+      font-size: 15px; color: var(--dark-1); line-height: 21px; margin-top: 4px;
+      min-height: 0;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .product-price-row { display: flex; align-items: baseline; gap: 12px; margin-top: 8px; }
+    .product-price { font-size: 18px; font-weight: 600; color: var(--dark-1); line-height: 24px; }
+    .product-save  { font-size: 18px; font-weight: 600; color: #e02500; line-height: 24px; }
+    .product-msrp {
+      font-size: 18px; font-weight: 400; color: var(--mid-3);
+      line-height: 24px; margin-top: 4px; text-decoration: line-through;
+    }
+
+    /* ══ Attribute filters: Color & Size ══════════════════════════ */
+
+    /* §2 — pills never shrink or truncate; row scrolls instead */
+    .pill { flex-shrink: 0; }
+
+    /* §6 — chip row scrolls horizontally, never wraps */
+    .applied-row {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 2px 0;
+    }
+    .applied-row::-webkit-scrollbar { display: none; }
+    .chip { flex-shrink: 0; }
+    .clear-all { flex-shrink: 0; }
+    .chip-attr { color: var(--dark-1); }
+
+    /* §5 — async facet counts: only the count shimmers, label stays live */
+    .cnt { color: var(--mid-2); font-weight: 400; }
+    .cnt.skel {
+      display: inline-block;
+      width: 34px;          /* width of a four-digit count — no layout shift */
+      height: 12px;
+      border-radius: 3px;
+      vertical-align: middle;
+      color: transparent;
+      background: linear-gradient(90deg, #eee 25%, #f7f7f7 50%, #eee 75%);
+      background-size: 200% 100%;
+      animation: skel-shimmer 1.1s ease-in-out infinite;
+    }
+    @keyframes skel-shimmer {
+      from { background-position: 200% 0; }
+      to   { background-position: -200% 0; }
+    }
+    .cnt:not(.skel) { animation: cnt-in 0.2s ease; }
+    @keyframes cnt-in { from { opacity: 0; } to { opacity: 1; } }
+
+
+    /* ── §3 Size popover — Figma node 15:6228 "Filter tooltips" ──
+       Container 12px radius + 0 2px 5.5px rgba(0,0,0,0.18) drop shadow,
+       content frame 18px side padding / 6px vertical, 6px gap between
+       family groups, 4px gap between header and value grid. */
+    .dropdown--size {
+      border-radius: 12px;
+      box-shadow: none;
+      filter: drop-shadow(0 2px 5.5px rgba(0,0,0,0.18));
+      overflow: visible;
+    }
+    /* Six families run long (Length alone is 71 values), so the value area
+       scrolls inside the popover instead of running off the viewport. */
+    /* ── §4 Color popover — Figma node 78:12094 "Current hex codes" ──
+       Items frame is 18px sides, 12px top, 6px bottom, capped at 300px
+       and then scrolls. */
+    .dropdown--color {
+      border-radius: 12px;
+      box-shadow: none;
+      filter: drop-shadow(0 2px 5.5px rgba(0,0,0,0.18));
+      overflow: visible;
+    }
+    .dropdown--color .dropdown-items {
+      padding: 12px 18px 6px;
+      max-height: 300px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      border-radius: 12px 12px 0 0;
+    }
+    .dropdown--size .dropdown-items {
+      padding: 18px;
+      gap: 6px;
+      max-height: 320px;
+      overflow-y: auto;
+      border-radius: 12px;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+    }
+    .dropdown--size .dropdown-items::-webkit-scrollbar { width: 8px; }
+    .dropdown--size .dropdown-items::-webkit-scrollbar-thumb {
+      background: var(--mid-3); border-radius: 4px;
+      border: 2px solid #fff; background-clip: padding-box;
+    }
+    .dropdown--size .dropdown-items::-webkit-scrollbar-track { background: transparent; }
+    .dropdown--size .dropdown-footer { border-radius: 0 0 12px 12px; }
+
+
+    .pop-section + .pop-section { margin-top: 16px; border-top: 1px solid var(--light-1); padding-top: 14px; }
+    .pop-section-label {
+      font-size: 15px; font-weight: 600; line-height: 21px;
+      color: var(--dark-1); padding-bottom: 8px;
+    }
+    .fam-sub {
+      font-size: 13px; font-weight: 600; color: var(--mid-1);
+      padding: 10px 0 2px; line-height: 18px;
+    }
+
+    /* Values wrap and pack tight. A min-width keeps the short values lined up
+       like the Figma grid (7 per row, 6 for numeric families) while longer
+       labels hug their own content instead of leaving reserved-column gaps. */
+    .fam-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      width: 100%;
+    }
+    /* 49px is the component's annotated minimum — same for every family */
+    .fam-grid .size-chip { flex: 0 0 auto; min-width: 49px; }
+    /* colour grid gutter is 9px in node 78:12094, with 6px under the rows */
+    .fam-grid--color { gap: 9px; padding-bottom: 6px; }
+
+    /* ── Attribute option — Figma component 70:11961 ──────────────
+       Every option pill in every popover is this one component.
+       Geometry (all variants): 36px tall, min-width 49px (annotated on
+       the node), 3px/9px padding, 4px gap, 100px radius, 15/21 regular.
+         Default  70:11960 → 1px rgba(157,157,157,0.5)
+         Hover    70:11962 → fill #fafafa, same border
+         Applied  70:11968 → 1px #9d9d9d
+         Variant5 78:12014 → 1px #252525                             */
+    .size-chip {
+      display: flex; align-items: center; justify-content: center;
+      gap: 4px;
+      height: 36px;
+      min-width: 49px;
+      padding: 3px 9px;
+      /* Figma's Default stroke. It had been lightened to #e3e3e3 to sit further
+         back from the selected #252525 one; restored because it read too faint. */
+      border: 1px solid rgba(157, 157, 157, 0.5);
+      border-radius: 100px;
+      background: #fff;
+      font-family: var(--font);
+      font-size: 15px; font-weight: 400; line-height: 21px;
+      color: var(--dark-1);
+      white-space: nowrap;
+      cursor: pointer;
+      transition: border-color 0.12s, background 0.12s;
+    }
+    .size-chip:hover { background: #fafafa; }
+    /* clicked → Applied (70:11968). The Figma variant is #9d9d9d, which is
+       the default border's own grey at full opacity and reads too quietly;
+       darkened to #4d4d4d so selection is legible at a glance. Weight stays
+       regular — the component never bolds the label in any variant. */
+    .size-chip.is-checked {
+      border: 1px solid var(--dark-1);
+      font-weight: 400;
+      background: #fff;
+    }
+    /* no focus treatment on option chips — selected is the only chip state */
+    .size-chip:focus-visible { outline: none; }
+
+
+    .val-row {
+      display: flex; align-items: center; gap: 8px;
+      padding: 7px 16px; cursor: pointer; transition: background 0.1s;
+    }
+    .val-row:hover { background: var(--light-2); }
+    .val-cb {
+      width: 18px; height: 18px; flex-shrink: 0;
+      border: 1px solid var(--mid-3); border-radius: 3px; background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.12s, border-color 0.12s;
+    }
+    .val-row.is-checked .val-cb { background: var(--info); border-color: var(--info); }
+    .val-cb svg { display: none; }
+    .val-row.is-checked .val-cb svg { display: block; }
+    .val-label { font-size: 15px; line-height: 21px; flex-shrink: 0; }
+    /* Sort is single-select — radio rather than checkbox */
+    .val-rb {
+      width: 18px; height: 18px; flex-shrink: 0;
+      border: 1.5px solid var(--mid-3); border-radius: 50%; background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.12s;
+    }
+    .val-row.is-checked .val-rb { border-color: var(--info); }
+    .val-rb-dot { display: none; width: 10px; height: 10px; border-radius: 50%; background: var(--info); }
+    .val-row.is-checked .val-rb-dot { display: block; }
+    /* the chosen sort is marked by the radio, so the label stays Regular */
+    .dropdown--sort .val-row.is-checked .val-label { font-weight: 400; }
+    .val-row.is-checked .val-label { font-weight: 600; }
+
+    /* ── §4 Color sheet ── */
+    .swatch--multi {
+      background: conic-gradient(#d0021b, #f5711b, #f8e71c, #2e7d32, #009688, #1e6fd9, #7b3fa0, #e86aa6, #d0021b);
+    }
+    .swatch--camo {
+      background: repeating-linear-gradient(45deg,
+        #4b5320 0 6px, #6b7a3a 6px 11px, #c3b091 11px 16px);
+    }
+
+    /* §4 — colour values are pills like the size chips: swatch then name.
+       A swatch is never shown without its name. */
+    /* 22px swatch, no ring. Figma strokes every ellipse #e3e3e3, but that
+       ring only does work on White — everywhere else it just muddies the
+       colour, and it turns into a pale halo once the chip inverts. */
+    .swatch-dot {
+      width: 22px; height: 22px; border-radius: 50%;
+      flex-shrink: 0; border: none;
+      box-sizing: border-box;
+    }
+    /* White is the one colour that needs the ring to read as a circle */
+    .swatch-dot.swatch--ring { border: 1px solid var(--light-1); }
+    /* Camo + Multicolor are exported artwork, not CSS approximations.
+       Camo: #395b14 ground with the pattern offset exactly as Figma
+       positions it inside the 22px clip (node 131:18172). */
+    .swatch-dot.swatch--camo {
+      border: none;
+      background: #395b14 url("swatch-camo-inner.svg") no-repeat -5.845px -4.036px / 36.8406px 29.5086px;
+    }
+    .swatch-dot.swatch--multi {
+      border: none;
+      background: url("swatch-multicolor.svg") no-repeat center / 22px 22px;
+    }
+
+    /* ── §5 mobile bottom sheet ── */
+    .sheet-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+      z-index: 900; opacity: 0; pointer-events: none; transition: opacity 0.25s;
+    }
+    .sheet-overlay.open { opacity: 1; pointer-events: all; }
+    .sheet {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 950;
+      background: #fff; border-radius: 24px 24px 0 0;
+      max-height: calc(100dvh - 40px);
+      display: flex; flex-direction: column;
+      transform: translateY(100%);
+      transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .sheet.open { transform: translateY(0); }
+    .sheet-grab {
+      width: 36px; height: 4px; border-radius: 2px; background: var(--mid-3);
+      margin: 8px auto 0; flex-shrink: 0;
+    }
+    .sheet-header {
+      display: flex; align-items: center; justify-content: center;
+      padding: 12px; position: relative; flex-shrink: 0;
+      border-bottom: 1px solid var(--light-1);
+    }
+    .sheet-title { font-size: 21px; font-weight: 600; line-height: 27px; }
+    .sheet-close {
+      position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+      width: 32px; height: 32px; border: none; background: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; border-radius: 50%;
+    }
+    .sheet-close:hover { background: var(--light-2); }
+    /* 18px all round the value area, matching the desktop popover */
+    .sheet-body { flex: 1; min-height: 0; overflow-y: auto; padding: 18px; }
+    .sheet-footer {
+      flex-shrink: 0; display: flex; gap: 12px; align-items: center;
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+      border-top: 1px solid var(--light-1);
+    }
+    .sheet-clear {
+      flex-shrink: 0; padding: 14px 20px; border-radius: 100px;
+      border: 1px solid var(--mid-3); background: #fff;
+      font-family: var(--font); font-size: 15px; font-weight: 600;
+      color: var(--mid-3); cursor: default;
+    }
+    .sheet-clear.has-selection { color: var(--dark-1); border-color: var(--dark-1); cursor: pointer; }
+    .sheet-cta {
+      flex: 1; padding: 14px; border-radius: 100px;
+      background: var(--orange); border: none;
+      font-family: var(--font); font-size: 15px; font-weight: 600;
+      color: #fff; cursor: pointer; transition: background 0.15s;
+    }
+    .sheet-cta:hover { background: #d94d1a; }
+    .sheet-cta:disabled { background: var(--light-1); color: var(--mid-1); cursor: default; }
+    .sheet-cta .cnt.skel { background: rgba(255,255,255,0.45); width: 30px; }
+
+    /* ── §8 zero results ── */
+    .zero-state { padding: 8px 0 40px; display: none; }
+    .zero-state.open { display: block; }
+    .zero-head { font-size: 21px; font-weight: 600; line-height: 27px; }
+    .zero-sub { font-size: 15px; color: var(--mid-1); margin-top: 6px; }
+    .relax-list { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; max-width: 460px; }
+    .relax-btn {
+      display: flex; align-items: center; gap: 8px;
+      padding: 14px 16px; border-radius: 12px;
+      border: 1px solid var(--light-1); background: #fff;
+      font-family: var(--font); font-size: 15px; color: var(--dark-1);
+      cursor: pointer; text-align: left; transition: background 0.12s, border-color 0.12s;
+    }
+    .relax-btn:hover { background: var(--light-2); border-color: var(--mid-3); }
+    .relax-count { margin-left: auto; color: var(--mid-1); flex-shrink: 0; }
+
+    /* ── §9 drawer: domain groups ── */
+    .af-cat-wrap.dropdown--category { padding: 0; }
+
+    /* ── Panel category drilldown — Figma 168:1941 ────────────────
+       The panel draws this list differently from the desktop popover: the
+       breadcrumb loses its chevron and goes up to 15px, and children run
+       flush with the "All …" header instead of being indented under it. */
+    .af-row-body .cat-breadcrumb { font-size: 15px; line-height: 21px; height: 21px; }
+    .af-row-body .cat-bc-icon { display: none; }
+    /* 46px rows at an exact 46px pitch — no gap between them (168:1941) */
+    .af-row-body .cat-children { gap: 0; }
+    .af-row-body .cat-row {
+      height: 46px; width: auto; padding: 4px 8px; margin: 0 -8px; border-radius: 8px;
+    }
+    .af-row-body .cat-row--child { padding-left: 8px; }
+    .af-row-body .cat-row--header { padding-top: 8px; padding-bottom: 8px; }
+    /* Weight marks the selection and nothing else. The header reads semibold in
+       168:1944 only because that view's selection happens to be the header. */
+    /* Selected header (168:1942) drops its count, so the label takes the slack
+       and pushes "Selected" to the right edge. */
+    .cat-row--nocount .cat-label { flex: 1 0 0; min-width: 0; white-space: normal; }
+    .af-attr-label {
+      font-size: 13px; font-weight: 600; color: var(--mid-1);
+      padding: 12px 16px 2px; line-height: 18px;
+    }
+
+    @media (max-width: 1280px) {
+      .product-grid { grid-template-columns: repeat(3, 1fr); }
+      .brand-row { gap: 12px; }
+      .brand-row .brand-item:nth-of-type(n + 6) { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .results-section, .search-header, .filter-section { padding-left: 16px; padding-right: 16px; }
+      /* pill dropdown is replaced by the bottom sheet at this width */
+      .dropdown { display: none !important; }
+    }

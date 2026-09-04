@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filter Pills Demo — Search PLP</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── Mobile nav — Figma iYqedQS2TuLL3JBkbgw7ak 1450:8421 "Web /Expert Nav" ──
+     Mobile only. The desktop prototype deliberately carries no header (see README),
+     so every rule for this block lives inside the §11 mobile media query. -->
+<header class="mnav">
+  <div class="mnav-bar">
+    <span class="mnav-logo" aria-hidden="true">
+      <svg width="25.82" height="30" viewBox="0 0 25.8155 30" fill="none"><path d="M7.35699 30L25.2848 12.0728C26.4186 10.939 25.6156 8.99989 24.0119 8.99989H19.0363C18.5883 8.99989 18.2983 8.52656 18.5016 8.12751L22.6431 0H3.00016C1.34316 0 0 1.34312 0 3.00006V15C0 16.6569 1.34316 18.0001 3.00016 18.0001H12.4921C12.9401 18.0001 13.23 18.4734 13.0268 18.8724L7.35671 30H7.35699Z" fill="#FC693B"/></svg>
+    </span>
+    <div class="mnav-search">
+      <span class="mnav-search-icon">
+        <svg width="17" height="18" viewBox="0 0 17 18" fill="none"><path d="M12.293 13.293C12.684 12.902 13.316 12.902 13.707 13.293L16.707 16.293C17.098 16.684 17.098 17.316 16.707 17.707C16.512 17.902 16.256 18 16 18C15.744 18 15.488 17.902 15.293 17.707L12.293 14.707C11.902 14.316 11.902 13.684 12.293 13.293ZM7 0C10.86 0 14 3.141 14 7C14 10.859 10.86 14 7 14C3.14 14 0 10.859 0 7C0 3.141 3.14 0 7 0ZM7 2C4.243 2 2 4.243 2 7C2 9.757 4.243 12 7 12C9.757 12 12 9.757 12 7C12 4.243 9.757 2 7 2Z" fill="#757575"/></svg>
+      </span>
+      <span class="mnav-search-term">bike apparel</span>
+    </div>
+    <div class="mnav-courtesy">
+      <button class="mnav-icon-btn" aria-label="Notifications">
+        <svg width="14" height="18" viewBox="0 0 14 18" fill="none"><path d="M9 16C9 17.1046 8.10457 18 7 18C5.89543 18 5 17.1046 5 16H9ZM7.0498 0C8.18164 8.67029e-05 9.03516 0.860057 9.03516 2C9.03516 2.093 9.00606 2.15921 8.99414 2.24121C13.0061 3.33641 13.0068 7.90107 13.0068 10C13.0068 12.254 13.8074 13.4082 14 13.4082V14.9893L13.0068 15H0V13.3984C0.298842 13.3984 1.0918 12.254 1.0918 10C1.0918 7.905 1.09246 3.35012 5.08594 2.24512C5.07502 2.16712 5.06348 2.089 5.06348 2C5.06348 0.86 5.91789 0 7.0498 0ZM7.09961 4C3.75393 4.00016 3.09961 6.20014 3.09961 10C3.09961 11.2599 2.90025 12.259 2.36035 13H11.8398C11.2999 12.259 11.0996 11.26 11.0996 10C11.0996 6.2 10.4456 4 7.09961 4Z" fill="#757575"/></svg>
+      </button>
+      <button class="mnav-icon-btn" aria-label="Cart">
+        <svg width="18" height="18" viewBox="0 0 18.0001 17.9714" fill="none"><path d="M8.00015 15.9997C7.97715 16.7917 7.42515 17.9714 6.00015 17.9714C4.5754 17.9712 4.02315 16.7917 4.00015 15.9997H8.00015ZM15.0001 15.9997C14.9771 16.7917 14.4251 17.9714 13.0001 17.9714C11.5754 17.9712 11.0231 16.7917 11.0001 15.9997H15.0001ZM1.0773 0.00167424C1.4863 0.0326742 3.54409 0.266307 3.96109 1.72531C4.21614 2.61571 4.81823 9.7508 4.99722 11.9167L5.06265 12.7077L4.30679 12.9509C4.27181 12.9629 4.23151 12.9788 4.19253 12.9987H17.0001C17.5521 12.9987 18.0001 13.4458 18.0001 13.9987C18.0001 14.5517 17.5521 14.9987 17.0001 14.9987H4.00015C3.25311 14.9987 2.00015 14.7385 2.00015 12.9987C2.00019 12.2878 2.42749 11.754 2.94742 11.406C2.60148 7.2638 2.18034 2.8227 2.03726 2.26925C1.95026 2.20725 1.37 2.02981 0.923001 1.99581C0.372241 1.95257 -0.0399082 1.47244 0.0030793 0.921596C0.0451818 0.370769 0.528448 -0.0292178 1.0773 0.00167424ZM16.0001 2.99874C17.4021 2.99874 18.0001 3.59681 18.0001 4.99874V8.99874C18.0001 10.4296 17.1397 10.6939 16.3068 10.9509C15.4589 11.2119 9.0405 11.8158 7.09195 11.9948L6.90933 10.0027C10.8184 9.64373 15.1795 9.18585 15.7121 9.04074C15.8099 9.01077 15.9132 8.97887 16.0001 8.95089V4.99874H6.26284L6.04995 2.99874H16.0001Z" fill="#757575"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mnav-tabs" aria-label="Primary">
+    <button class="mnav-tab">Home</button>
+    <button class="mnav-tab">Brands</button>
+    <button class="mnav-tab">Shop</button>
+    <span class="mnav-avatar"><img src="images/avatar.png" alt="Account"></span>
+  </nav>
+</header>
+
+<div class="page">
+  <div class="search-header">
+    <h1 class="search-title">Results for "bike apparel"</h1>
+    <div class="result-count" id="resultCount"></div>
+  </div>
+
+  <div class="brand-row" id="brandRow"></div>
+  <!-- §11 — on mobile "See all" drops below the scrolling strip (1450:8454) -->
+  <div class="brand-see-all" id="brandSeeAll"></div>
+
+  <div class="filter-section">
+    <div class="pills-scroll-wrap" id="pillsScrollWrap">
+      <div class="pills-row" id="pillsRow"></div>
+      <button class="scroll-btn scroll-btn--left" id="pillsScrollLeft" aria-label="Scroll left" hidden>
+        <svg width="6" height="9" viewBox="0 0 6 9" fill="none"><path d="M5 1L1.5 4.5L5 8" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="scroll-btn scroll-btn--right" id="pillsScrollRight" aria-label="Scroll right" hidden>
+        <svg width="6" height="9" viewBox="0 0 6 9" fill="none"><path d="M1 1L4.5 4.5L1 8" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="applied-row" id="appliedRow"></div>
+  </div>
+
+  <div class="results-section">
+    <!-- §8 zero results — pill row + chip row stay visible above this -->
+    <div class="zero-state" id="zeroState">
+      <div class="zero-head" id="zeroHead"></div>
+      <div class="zero-sub">Try removing one of these to widen your results.</div>
+      <div class="relax-list" id="relaxList"></div>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</div>
+
+<!-- All Filters overlay + panel -->
+<div id="afOverlay" class="af-overlay"></div>
+<div id="afPanel" class="af-panel" role="dialog" aria-modal="true" aria-label="All filters">
+  <div class="af-header">
+    <h2 class="af-title" id="afTitle">All Filters</h2>
+    <!-- Close Icon 168:1913 — 36px, drawn at #9d9d9d -->
+    <button class="af-close-btn" id="afCloseBtn" aria-label="Close all filters">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <path d="M19.3831 18.0001L26.7026 10.7291C27.0825 10.3501 27.1014 9.71707 26.7423 9.31407C26.3842 8.91207 25.7845 8.89507 25.4037 9.27107L17.9999 16.6261L10.5971 9.27107C10.2153 8.89407 9.6166 8.91207 9.25755 9.31407C8.89849 9.71707 8.91744 10.3501 9.29828 10.7291L16.6168 18.0001L9.29828 25.2721C8.91744 25.6501 8.89849 26.2831 9.25755 26.6861C9.44418 26.8951 9.69523 27.0001 9.94724 27.0001C10.1803 27.0001 10.4133 26.9101 10.5971 26.7291L17.9999 19.3741L25.4037 26.7291C25.5865 26.9101 25.8196 27.0001 26.0527 27.0001C26.3047 27.0001 26.5557 26.8951 26.7423 26.6861C27.1014 26.2831 27.0825 25.6501 26.7026 25.2721L19.3831 18.0001" fill="#9D9D9D"/>
+      </svg>
+    </button>
+  </div>
+  <div class="af-body" id="afBody"></div>
+  <div class="af-footer">
+    <!-- 168:2086 — the count reflects the staged draft, not the applied state -->
+    <div class="af-result-count" id="afResultCount"></div>
+    <div class="af-footer-btns">
+      <button class="af-btn-clear" id="afClearAllBtn">Reset</button>
+      <button class="af-btn-done" id="afDoneBtn">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- Dropdown (portal) -->
+<div id="filterDropdown" class="dropdown" role="dialog" aria-modal="false">
+  <div class="dropdown-caret" id="dropdownCaret"></div>
+  <div class="dropdown-items" id="dropdownItems"></div>
+  <div class="dropdown-footer">
+    <button class="dropdown-btn-clear" id="dropdownClear">Clear</button>
+    <button class="dropdown-btn-done" id="dropdownDone">Apply</button>
+  </div>
+</div>
+
+<!-- §2 — on mobile every pill opens a bottom sheet -->
+<div id="sheetOverlay" class="sheet-overlay"></div>
+<div id="filterSheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <!-- Header 2144:20713 — 54px, title left in a flex-1 slot, 36px close. No grab
+       handle: none of the sheet frames draw one. -->
+  <div class="sheet-header">
+    <h2 class="sheet-title" id="sheetTitle"></h2>
+    <button class="sheet-close" id="sheetClose" aria-label="Close">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <path d="M19.3831 18.0001L26.7026 10.7291C27.0825 10.3501 27.1014 9.71707 26.7423 9.31407C26.3842 8.91207 25.7845 8.89507 25.4037 9.27107L17.9999 16.6261L10.5971 9.27107C10.2153 8.89407 9.6166 8.91207 9.25755 9.31407C8.89849 9.71707 8.91744 10.3501 9.29828 10.7291L16.6168 18.0001L9.29828 25.2721C8.91744 25.6501 8.89849 26.2831 9.25755 26.6861C9.44418 26.8951 9.69523 27.0001 9.94724 27.0001C10.1803 27.0001 10.4133 26.9101 10.5971 26.7291L17.9999 19.3741L25.4037 26.7291C25.5865 26.9101 25.8196 27.0001 26.0527 27.0001C26.3047 27.0001 26.5557 26.8951 26.7423 26.6861C27.1014 26.2831 27.0825 25.6501 26.7026 25.2721L19.3831 18.0001" fill="#9D9D9D"/>
+      </svg>
+    </button>
+  </div>
+  <div class="sheet-body" id="sheetBody"></div>
+  <div class="sheet-footer">
+    <button class="sheet-clear" id="sheetClear">Clear all</button>
+    <!-- §5 — CTA states the live result count, shimmers while counts resolve -->
+    <button class="sheet-cta" id="sheetCta"></button>
+  </div>
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
