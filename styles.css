@@ -582,6 +582,7 @@ body.inspo .case-layout > .case-toc {
   margin-left:-220px;
   overflow:visible;
 }
+.redirect-page .case-toc { display:none; }
 body.inspo .case-layout > .case-study,
 body.inspo main > .case-study {
   width:100%;
