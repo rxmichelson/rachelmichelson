@@ -47,20 +47,12 @@
           <section class="ai-prototype-section" id="prototype" aria-labelledby="ai-prototype-title">
             <h2 id="ai-prototype-title">Try it out yourself</h2>
             <div class="ai-prototype-frame">
-              <iframe class="ai-prototype-embed" src="../prototypes/ai-qanda/index.html" title="Interactive AI Q&A prototype"></iframe>
+              <iframe class="ai-prototype-embed" src="../prototypes/ai-qanda/index.html" title="Interactive AI Q&A prototype" scrolling="no"></iframe>
             </div>
           </section>
       </article>
     </main>
     <footer><p>© 2026 Rachel Michelson</p></footer>
     <script src="../script.js"></script>
-    <script>
-      const aiPrototype = document.querySelector('.ai-prototype-embed');
-      window.addEventListener('message', (event) => {
-        if (event.data?.type === 'ai-qanda-height') {
-          aiPrototype.parentElement.style.height = `${event.data.height}px`;
-        }
-      });
-    </script>
   </body>
 </html>

@@ -167,7 +167,7 @@ if (caseModalTriggers.length) {
       finalSection = `<section class="ai-prototype-section" aria-labelledby="modal-ai-prototype-title">
           <h2 id="modal-ai-prototype-title">Try it out yourself</h2>
           <div class="ai-prototype-frame">
-            <iframe src="prototypes/ai-qanda/index.html" title="Interactive AI Q&A prototype"></iframe>
+            <iframe class="ai-prototype-embed" src="prototypes/ai-qanda/index.html" title="Interactive AI Q&A prototype" scrolling="no"></iframe>
           </div>
         </section>`;
     } else if (project.media) {
@@ -247,6 +247,15 @@ if (caseModalTriggers.length) {
     caseModalTrigger?.focus({ preventScroll: true });
   });
 }
+
+// Keep the embedded AI Q&A prototype flush to its content as answers expand.
+window.addEventListener('message', (event) => {
+  if (event.data?.type !== 'ai-qanda-height') return;
+
+  document.querySelectorAll('.ai-prototype-embed').forEach((prototype) => {
+    prototype.parentElement.style.height = `${event.data.height}px`;
+  });
+});
 
 // Shared contact dialog. Email is copied rather than opened with a mailto link.
 const contactTriggers = [...document.querySelectorAll('[data-contact-open]')];
